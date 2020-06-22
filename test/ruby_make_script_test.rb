@@ -2,7 +2,7 @@ require "test_helper"
 
 def make_file
     make do
-        :run .from "test.c" {
+        :run .from("test.c"){
             ~ "echo run"
         }
         "test.c" .from "test2.c" {
