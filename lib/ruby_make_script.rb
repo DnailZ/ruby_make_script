@@ -159,6 +159,7 @@ def make
     
     if File.exist?('./.make_script.yaml')
         p $file_time_dict
+        p File.exist?('./.make_script.yaml')
         $file_time_dict = YAML.load(File.read('./.make_script.yaml'))
     end
     p $file_time_dict
