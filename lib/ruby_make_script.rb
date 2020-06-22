@@ -162,11 +162,9 @@ def make
     throw "at least a target" if $targetlist.length < 1
     
     if File.exist?('./.make_script.yaml')
-        p $file_time_dict
-        p File.exist?('./.make_script.yaml')
         $file_time_dict = YAML.load(File.read('./.make_script.yaml'))
     end
-    p $file_time_dict
+
     begin
         $targetlist[0].resolve_all
     rescue String => e
