@@ -54,6 +54,7 @@ end
 class FileTarget
 
     attr_accessor :target
+    attr_accessor :depend
     attr_accessor :update_proc
     attr_accessor :completed
     def resolve_all
@@ -78,7 +79,7 @@ class FileTarget
        @depend = []
        @completed = false
     end
-    def depend(dependlist)
+    def set_depend(dependlist)
         @depend = dependlist
         @update_proc = Proc.new { yield }
     end
@@ -91,6 +92,7 @@ class FileTarget
 end
 
 class PhonyTarget
+    attr_accessor :depend
     attr_accessor :target
     attr_accessor :update_proc
     attr_accessor :completed
@@ -141,7 +143,7 @@ end
 class Array
     def from(*dependlist)
         tar = FileTarget.new(self)
-        tar.depend(dependlist) { yield }
+        tar.set_depend(dependlist) { yield }
         tar.add
     end
 end
