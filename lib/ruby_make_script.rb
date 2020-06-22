@@ -56,7 +56,7 @@ class FileTarget
     attr_accessor :target
     attr_accessor :update_proc
     attr_accessor :completed
-    def resolve
+    def resolve_all
         @target.each{ |f|
             resolve(f)
         }
@@ -94,7 +94,7 @@ class PhonyTarget
     attr_accessor :target
     attr_accessor :update_proc
     attr_accessor :completed
-    def resolve
+    def resolve_all
         resolve(@target)
     end
     def depend_modified?
@@ -159,7 +159,7 @@ def make
         $file_time_dict = YAML.load(File.read('./.make_script.yaml'))
     end
     begin
-        $targetlist[0].resolve
+        $targetlist[0].resolve_all
     rescue String => e
         puts Pastel.new.red.bold("ruby_make_script failed> ") + e
     end
