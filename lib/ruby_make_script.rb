@@ -9,9 +9,10 @@ $cur_file_time_dict = Hash[]
 
 class String
     def ~@
-        puts Pastel.new.green("ruby_make_script> ") + self
+        puts Pastel.new.green("running> ") + self
         if !system(self) 
-            puts Pastel.new.red.bold("ruby_make_script error")
+            puts Pastel.new.red.bold("error>") + self
+            throw "Make Stopped"
         end
     end
 end
