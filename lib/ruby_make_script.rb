@@ -79,7 +79,7 @@ class PhonyTarget
     attr_accessor depend
     attr_accessor target
     def depend_modified?
-        @depend.map(|f| file_modified?(file)).reduce(false, :or)
+        @depend.map{ |f| file_modified?(file) }.reduce(false, :or)
     end
 
     def run
