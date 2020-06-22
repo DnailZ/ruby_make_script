@@ -53,6 +53,7 @@ end
 
 class FileTarget
 
+    attr_accessor :target
     attr_accessor :update_proc
     attr_accessor :completed
     def depend_modified?
@@ -85,6 +86,7 @@ class FileTarget
 end
 
 class PhonyTarget
+    attr_accessor :target
     attr_accessor :update_proc
     attr_accessor :completed
 
@@ -150,7 +152,7 @@ def make
         $file_time_dict = YAML.load(File.read('./.make_script.yaml'))
     end
     begin
-        $targetlist[0].each{ |f|
+        $targetlist[0].target.each{ |f|
             resolve(f)
         }
     rescue String => e
