@@ -10,9 +10,7 @@ $cur_file_time_dict = Hash[]
 class String
     def ~@
         puts Pastel.new.green("running> ") + self
-        exit_stat =  system(self) 
-        p exit_stat
-        if !exit_stat
+        if !system(self) 
             puts Pastel.new.red.bold("error> ") + "command error: " + self
             throw "make command failed"
         end
