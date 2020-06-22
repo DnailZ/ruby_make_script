@@ -124,8 +124,8 @@ class PhonyTarget
     def set_depend(dependlist)
         @depend = dependlist
     end
-    def from(dependlist, proc)
-        @update_proc = proc
+    def from(dependlist)
+        @update_proc = Proc.new { yield }
         add()
     end
     def add
@@ -136,7 +136,7 @@ end
 
 class Symbol
     def from(*dependlist)
-        PhonyTarget.new(String(self)).from(*dependlist, Proc.new { yield })
+        PhonyTarget.new(String(self)).from(*dependlist) { yield }
     end
 end
 
