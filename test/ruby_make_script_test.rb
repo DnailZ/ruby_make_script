@@ -5,9 +5,9 @@ def make_file
         :run .from("test.c") do
             ~ "echo run"
         end
-        "test.c" .from "test2.c" {
+        "test.c" .from "test2.c" do
             ~ "echo test.c"
-        }
+        end
     end
 end
 
