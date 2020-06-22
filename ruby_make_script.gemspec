@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["dnailzb@outlook.com"]
 
   spec.summary       = %q{TODO: Write a short summary, because RubyGems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
+  spec.description   = %q{write make script in ruby like GNU make}
   spec.homepage      = "TODO: Put your gem's website or public repo URL here."
   spec.license       = "MIT"
 
