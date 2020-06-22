@@ -2,10 +2,10 @@ require "test_helper"
 
 def make_file
     make do
-        "run".phony < ["test.c"] {
+        "run".phony from ["test.c"] {
             ~ "echo run"
         }
-        ["test.c"] < ["test2.c"] {
+        ["test.c"] from ["test2.c"] {
             ~ "echo test.c"
         }
     end
