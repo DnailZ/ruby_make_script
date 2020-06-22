@@ -8,7 +8,7 @@ $cur_file_time_dict = Hash[]
 
 class String
     def ~@
-        puts pastel.red("ruby_make_script>") + self
+        puts pastel.red("ruby_make_script> ") + self
         p system(self)
     end
 end
