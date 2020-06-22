@@ -147,5 +147,6 @@ def make
     rescue String => e
         puts Pastel.new.red.bold("ruby_make_script failed> ") + e
     end
+    
     File.open('./.make_script.yaml', 'w') { |f| f.write(YAML.dump($cur_file_time_dict)) }
 end
