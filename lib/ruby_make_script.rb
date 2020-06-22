@@ -76,7 +76,7 @@ class FileTarget
         @depend = dependlist
         @update_proc = Proc.new { yield }
     end
-    def add()
+    def add
         $targetlist += [self]
         @target.each { |t|
             $file_target_dict[t] = self
@@ -132,7 +132,7 @@ end
 class Array
     def from(*dependlist)
         tar = FileTarget.new(self).depend(dependlist) { yield }
-        tar.add()
+        tar.add
     end
 end
 
