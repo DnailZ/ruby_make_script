@@ -6,6 +6,7 @@ $cur_file_time_dict = Hash[]
 
 class String
     def ~@
+        puts self
         system(self)
     end
 end
@@ -134,8 +135,10 @@ def make
     yield
 
     throw "at least a target" if $targetlist.length < 1
-
-    File.open('./.make_script.yaml', 'w') { |f| f.write(YAML.dump($file_time_dict)) }
+    
+    if File.exists('./.make_script.yaml')
+        $file_time_dict = YAML.load(File.read('./.make_script.yaml'))
+    end
     resolve($targetlist[0])
-    $cur_file_time_dict = YAML.load(File.read('./.make_script.yaml'))
+    File.open('./.make_script.yaml', 'w') { |f| f.write(YAML.dump($cur_file_time_dict)) }
 end
