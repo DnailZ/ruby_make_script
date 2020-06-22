@@ -121,10 +121,9 @@ class PhonyTarget
         @depend = []
         @completed = false
     end
-    def set_depend(dependlist)
-        @depend = dependlist
-    end
+
     def from(dependlist)
+        @depend = dependlist
         @update_proc = Proc.new { yield }
         add()
     end
