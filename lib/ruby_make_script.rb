@@ -29,7 +29,7 @@ def file_modified?(file)
         real_modified or $file_target_dict[file].depend_modified?
     elsif $file_target_dict[file].class == PhonyTarget
         # 假目标被修改：依赖被修改或之前不存在
-        $file_time_dict[file] == nil or $file_target_dict[file].depend_modified?
+        return $file_time_dict[file] == nil or $file_target_dict[file].depend_modified?
     else
         throw "ruby_make_script: Err"
     end
