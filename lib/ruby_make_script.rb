@@ -43,6 +43,14 @@ def file_modified?(file)
     elsif $file_target_dict[file].class == PhonyTarget
         # 假目标被修改：依赖被修改或之前不存在
         return $file_time_dict[file] == nil || $file_target_dict[file].depend_modified?
+    elsif $file_target_dict[file] == nil
+        # 对无目标的文件，判断其存在，存在则直接使用即可
+        if !File.exist?(file)
+            throw "file not found #{file}"
+        else
+            $cur_file_time_dict[file] = File.mtime(file)
+            return $file_time_dict[file] == nil || $file_time_dict[file] != File.mtime(file)
+        end 
     else
         throw "file type error #{$file_target_dict[file].class}"
     end
