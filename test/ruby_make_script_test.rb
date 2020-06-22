@@ -17,7 +17,7 @@ class RubyMakeScriptTest < Minitest::Test
         ~ "ls"
     end
     def test_make
-        ~ "cd ./test/test_project"
+        cd "./test/test_project"
         make_file
         
     end
