@@ -36,7 +36,7 @@ def file_modified?(file)
         return real_modified || $file_target_dict[file].depend_modified?
     elsif $file_target_dict[file].class == PhonyTarget
         # 假目标被修改：依赖被修改或之前不存在
-        puts $file_time_dict, $file_target_dict
+        puts "#{$file_time_dict}, #{$file_target_dict}"
         return $file_time_dict[file] == nil || $file_target_dict[file].depend_modified?
     else
         throw "file type error #{file.class}"
