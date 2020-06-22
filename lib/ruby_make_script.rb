@@ -25,12 +25,14 @@ def resolve(file)
     puts "resolving #{file}"
     if file_modified?(file)
         t = $file_target_dict[file]
-        p :t , t
-        t.depend.each { |f|
-            resolve(f)
-        }
-        
-        t.run()
+        if t != nil # t == nil 时 file 是其他文件
+            p :t , t
+            t.depend.each { |f|
+                resolve(f)
+            }
+            
+            t.run()
+        end
     end
 end
 
