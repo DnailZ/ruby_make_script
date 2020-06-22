@@ -132,4 +132,3 @@ def make
     throw "at least a target" if $targetlist.length < 1
     resolve($targetlist[0])
 end
-
