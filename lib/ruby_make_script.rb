@@ -17,7 +17,7 @@ class String
     end
 end
 
-def resolve(file)     
+def resolve(file)
     if file_modified?(file)
         t = $file_target_dict[file]
         t.depend.each { |f|
@@ -38,7 +38,7 @@ def file_modified?(file)
         # 假目标被修改：依赖被修改或之前不存在
         return $file_time_dict[file] == nil || $file_target_dict[file].depend_modified?
     else
-        throw "file type error #{file.inspect}"
+        throw "file type error #{file.class}"
     end
 end
 def file_modified!(file)
@@ -47,7 +47,7 @@ def file_modified!(file)
     elsif $file_target_dict[file].class == PhonyTarget
         $cur_file_time_dict[file] = true
     else
-        throw "file type error #{file.inspect}"
+        throw "file type error #{file.class}"
     end
 end
 
@@ -150,7 +150,9 @@ def make
         $file_time_dict = YAML.load(File.read('./.make_script.yaml'))
     end
     begin
-        resolve($targetlist[0])
+        $targetlist[0].each{ |f|
+            resolve(f)
+        }
     rescue String => e
         puts Pastel.new.red.bold("ruby_make_script failed> ") + e
     end
