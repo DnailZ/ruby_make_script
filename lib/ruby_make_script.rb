@@ -102,7 +102,7 @@ class PhonyTarget
     def depend(dependlist)
         @depend = dependlist
     end
-    def <(dependlist)
+    def from(dependlist)
         @update_proc = Proc.new {
             yield
         }
@@ -121,7 +121,7 @@ class String
 end
 
 class Array
-    def <(dependlist)
+    def from(dependlist)
         tar = FileTarget.new(self).depend(dependlist)
         tar.update_proc = Proc.new{
             yield
@@ -147,6 +147,6 @@ def make
     rescue String => e
         puts Pastel.new.red.bold("ruby_make_script failed> ") + e
     end
-    
+
     File.open('./.make_script.yaml', 'w') { |f| f.write(YAML.dump($cur_file_time_dict)) }
 end
