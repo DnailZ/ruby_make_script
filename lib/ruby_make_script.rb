@@ -11,6 +11,7 @@ class String
     def ~@
         puts Pastel.new.green("running> ") + self
         p self
+        system("pwd")
         if !system(self) 
             puts Pastel.new.red.bold("error> ") + "command error: " + self
             throw "make command failed"
