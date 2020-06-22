@@ -11,7 +11,8 @@ class String
     def ~@
         puts Pastel.new.green("running> ") + self
         if !system(self) 
-            throw "command error: " + self
+            puts Pastel.new.red.bold("error> ") + "command error: " + self
+            throw "make command failed"
         end
     end
 end
@@ -144,7 +145,7 @@ def make
     begin
         resolve($targetlist[0])
     rescue String => e
-        puts Pastel.new.red.bold("error> ") + e
+        puts Pastel.new.red.bold("ruby_make_script failed> ") + e
     end
     File.open('./.make_script.yaml', 'w') { |f| f.write(YAML.dump($cur_file_time_dict)) }
 end
