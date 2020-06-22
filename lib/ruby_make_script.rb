@@ -11,7 +11,7 @@ class String
     def ~@
         puts Pastel.new.green("ruby_make_script> ") + self
         if !system(self) 
-            puts Pastel.new.red("ruby_make_script error")
+            puts Pastel.new.red.bold("ruby_make_script error")
         end
     end
 end
