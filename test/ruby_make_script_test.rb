@@ -2,11 +2,11 @@ require "test_helper"
 
 def make_file
     make do
-        :run .from "test.c" do
-            ~ "echo run"
+        :run .from "a.out" do
+            ~"./a.out"
         end
-        "test.c" .from "test2.c" do
-            ~ "echo test.c"
+        "a.out" .from "test.c" do
+            ~"gcc test.c"
         end
     end
 end
