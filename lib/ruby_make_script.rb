@@ -17,6 +17,10 @@ class String
     end
 end
 
+def cd(str)
+    Dir.chdir(str)
+end
+
 def resolve(file)
     if file_modified?(file)
         t = $file_target_dict[file]
