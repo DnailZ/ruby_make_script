@@ -108,24 +108,24 @@ class PhonyTarget
     end
 end
 
+class String
+    def phony
+        PhonyTarget.new(self)
+    end
+end
+
+class Array
+    def <(dependlist)
+        tar = FileTarget.new(self).depend(dependlist)
+        tar.update_proc = Proc.new{
+            yield
+        }
+        tar.add()
+    end
+end
+
 def make
     $targetlist = []
-
-    class String
-        def phony
-            PhonyTarget.new(self)
-        end
-    end
-
-    class Array
-        def <(dependlist)
-            tar = FileTarget.new(self).depend(dependlist)
-            tar.update_proc = Proc.new{
-                yield
-            }
-            tar.add()
-        end
-    end
     
     yield
 
