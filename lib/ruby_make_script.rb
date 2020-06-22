@@ -11,8 +11,7 @@ class String
     def ~@
         puts Pastel.new.green("running> ") + self
         if !system(self) 
-            puts Pastel.new.red.bold("error> ") + self
-            throw "Make Stopped"
+            throw "command error: " + self
         end
     end
 end
@@ -142,6 +141,10 @@ def make
     if File.exists('./.make_script.yaml')
         $file_time_dict = YAML.load(File.read('./.make_script.yaml'))
     end
-    resolve($targetlist[0])
+    begin
+        resolve($targetlist[0])
+    rescue String => e
+        puts Pastel.new.red.bold("error> ") + e
+    end
     File.open('./.make_script.yaml', 'w') { |f| f.write(YAML.dump($cur_file_time_dict)) }
 end
