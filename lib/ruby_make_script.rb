@@ -52,6 +52,8 @@ def file_modified!(file)
 end
 
 class FileTarget
+
+    attr_accessor :update_proc
     attr_accessor :completed
     def depend_modified?
         return @depend.map{ |f| file_modified?(file) }.reduce(false, :or)
@@ -82,6 +84,7 @@ class FileTarget
 end
 
 class PhonyTarget
+    attr_accessor :update_proc
     attr_accessor :completed
 
     def depend_modified?
@@ -114,14 +117,23 @@ class PhonyTarget
     end
 end
 
-class String
-    def phony
-        PhonyTarget.new(self)
+class Symbol
+    def from(*dependlist)
+        PhonyTarget.new(String(self)).from(*dependlist) {
+            yield
+        }
     end
 end
 
+class String
+    def from(*dependlist)
+        [self].from(*dependlist)
+    end
+end
+
+
 class Array
-    def from(dependlist)
+    def from(*dependlist)
         tar = FileTarget.new(self).depend(dependlist)
         tar.update_proc = Proc.new{
             yield
