@@ -74,6 +74,7 @@ class FileTarget
     end
     def depend(dependlist)
         @depend = dependlist
+        @update_proc = Proc.new { yield }
     end
     def add()
         $targetlist += [self]
@@ -130,8 +131,7 @@ end
 
 class Array
     def from(*dependlist)
-        tar = FileTarget.new(self).depend(dependlist)
-        tar.update_proc = Proc.new { yield }
+        tar = FileTarget.new(self).depend(dependlist) { yield }
         tar.add()
     end
 end
