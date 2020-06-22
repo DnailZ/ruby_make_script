@@ -25,7 +25,7 @@ def resolve(file)
     puts "resolving #{file}"
     if file_modified?(file)
         t = $file_target_dict[file]
-        puts "#{t.depend}"
+        puts "#{t}"
         t.depend.each { |f|
             resolve(f)
         }
