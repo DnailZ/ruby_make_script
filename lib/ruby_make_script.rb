@@ -24,12 +24,12 @@ end
 def file_modified?(file)
     if $file_target_dict[file].class == FileTarget
         # 文件真正被修改：文件之前不存在，或文件现在已经不存在，或时间戳修改
-        real_modified = $file_time_dict[file] or !File.exists(file) or ($file_time_dict[file] != File.mtime(file)
+        real_modified = $file_time_dict[file] || !File.exists(file) || ($file_time_dict[file] != File.mtime(file)
         # 文件依赖被修改
-        return real_modified or $file_target_dict[file].depend_modified?
+        return real_modified || $file_target_dict[file].depend_modified?
     elsif $file_target_dict[file].class == PhonyTarget
         # 假目标被修改：依赖被修改或之前不存在
-        return $file_time_dict[file] == nil or $file_target_dict[file].depend_modified?
+        return $file_time_dict[file] == nil || $file_target_dict[file].depend_modified?
     else
         throw "ruby_make_script: Err"
     end
