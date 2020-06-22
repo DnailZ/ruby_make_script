@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["dnailz"]
   spec.email         = ["dnailzb@outlook.com"]
 
-  spec.summary       = %q{TODO: Write a short summary, because RubyGems requires one.}
+  spec.summary       = %q{make script}
   spec.description   = %q{write make script in ruby like GNU make}
   spec.homepage      = "TODO: Put your gem's website or public repo URL here."
   spec.license       = "MIT"
