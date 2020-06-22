@@ -105,10 +105,8 @@ class PhonyTarget
     def depend(dependlist)
         @depend = dependlist
     end
-    def from(dependlist)
-        @update_proc = Proc.new {
-            yield
-        }
+    def from(dependlist, &block)
+        @update_proc = Proc.new(&block)
         add()
     end
     def add
@@ -118,10 +116,8 @@ class PhonyTarget
 end
 
 class Symbol
-    def from(*dependlist)
-        PhonyTarget.new(String(self)).from(*dependlist) {
-            yield
-        }
+    def from(*dependlist, &block)
+        PhonyTarget.new(String(self)).from(*dependlist, &block)
     end
 end
 
@@ -135,9 +131,7 @@ end
 class Array
     def from(*dependlist, &block)
         tar = FileTarget.new(self).depend(dependlist)
-        tar.update_proc = Proc.new{
-            block
-        }
+        tar.update_proc = Proc.new(&block)
         tar.add()
     end
 end
