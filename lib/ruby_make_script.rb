@@ -76,7 +76,7 @@ class FileTarget
 end
 
 class PhonyTarget
-    attr_accessor completed
+    attr_accessor :completed
 
     def depend_modified?
         @depend.map{ |f| file_modified?(file) }.reduce(false, :or)
