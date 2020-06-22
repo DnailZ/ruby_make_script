@@ -105,8 +105,8 @@ class PhonyTarget
     def depend(dependlist)
         @depend = dependlist
     end
-    def from(dependlist, &block)
-        @update_proc = Proc.new(&block)
+    def from(dependlist, proc)
+        @update_proc = proc
         add()
     end
     def add
