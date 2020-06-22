@@ -123,7 +123,7 @@ end
 
 class String
     def from(*dependlist)
-        [self].from(*dependlist)
+        [self].from(*dependlist) { yield }
     end
 end
 
