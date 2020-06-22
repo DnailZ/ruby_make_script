@@ -1,6 +1,6 @@
 
 require "pastel"
-
+require 'yaml'
 
 $targetlist = []
 $file_target_dict = Hash[]
