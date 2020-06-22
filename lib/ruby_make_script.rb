@@ -44,7 +44,7 @@ def file_modified?(file)
         # 假目标被修改：依赖被修改或之前不存在
         return $file_time_dict[file] == nil || $file_target_dict[file].depend_modified?
     else
-        throw "file type error #{file.class}"
+        throw "file type error #{$file_target_dict[file].class}"
     end
 end
 def file_modified!(file)
