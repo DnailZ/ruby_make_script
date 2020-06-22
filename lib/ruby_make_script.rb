@@ -114,7 +114,7 @@ class PhonyTarget
         @target = str
         @depend = []
     end
-    def depend(dependlist)
+    def set_depend(dependlist)
         @depend = dependlist
     end
     def from(dependlist, proc)
