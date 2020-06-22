@@ -11,7 +11,7 @@ class String
     def ~@
         puts Pastel.new.green("running> ") + self
         if !system(self) 
-            puts Pastel.new.red.bold("error>") + self
+            puts Pastel.new.red.bold("error> ") + self
             throw "Make Stopped"
         end
     end
