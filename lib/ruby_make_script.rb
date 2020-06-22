@@ -6,8 +6,8 @@ $cur_file_time_dict = Hash[]
 
 class String
     def ~@
-        puts self
-        system(self)
+        puts "ruby_make_script> #{self}"
+        p system(self)
     end
 end
 
