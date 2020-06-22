@@ -1,5 +1,5 @@
 
-require 
+require "pastel"
 
 $targetlist = []
 $file_target_dict = Hash[]
