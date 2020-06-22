@@ -110,7 +110,7 @@ class PhonyTarget
     def run
         if ! @completed
             update_proc.call
-            @completed = true
+            @completed = false
             file_modified!(@target)
         end
     end
