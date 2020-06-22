@@ -110,13 +110,14 @@ class PhonyTarget
     def run
         if ! @completed
             update_proc.call
-            @completed = false
+            @completed = true
             file_modified!(@target)
         end
     end
     def initialize(str)
         @target = str
         @depend = []
+        @completed = false
     end
     def set_depend(dependlist)
         @depend = dependlist
