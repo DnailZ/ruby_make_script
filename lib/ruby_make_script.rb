@@ -124,11 +124,18 @@ class Array
     end
 end
 
+
+
+
+
 def make
     $targetlist = []
     
     yield
 
     throw "at least a target" if $targetlist.length < 1
+
+    File.open('/path/to/yaml.dump', 'w') { |f| f.write(YAML.dump($file_time_dict)) }
     resolve($targetlist[0])
+    $cur_file_time_dict = YAML.load(File.read('/path/to/yaml.dump'))
 end
