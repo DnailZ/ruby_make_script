@@ -10,7 +10,9 @@ $cur_file_time_dict = Hash[]
 class String
     def ~@
         puts Pastel.new.green("ruby_make_script> ") + self
-        p system(self)
+        if !system(self) 
+            puts Pastel.new.red("ruby_make_script error")
+        end
     end
 end
 
