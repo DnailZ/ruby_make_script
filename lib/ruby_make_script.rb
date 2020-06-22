@@ -132,6 +132,7 @@ end
 class Array
     def from(*dependlist)
         tar = FileTarget.new(self).depend(dependlist) { yield }
+        p tar
         tar.add
     end
 end
