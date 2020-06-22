@@ -85,7 +85,7 @@ class FileTarget
        @depend = []
        @completed = false
     end
-    def set_depend(dependlist)
+    def set_depend(*dependlist)
         @depend = dependlist
         @update_proc = Proc.new { yield }
     end
@@ -122,7 +122,7 @@ class PhonyTarget
         @completed = false
     end
 
-    def from(dependlist)
+    def from(*dependlist)
         @depend = dependlist
         @update_proc = Proc.new { yield }
         add()
@@ -149,7 +149,7 @@ end
 class Array
     def from(*dependlist)
         tar = FileTarget.new(self)
-        tar.set_depend(dependlist) { yield }
+        tar.set_depend(*dependlist) { yield }
         tar.add
     end
 end
