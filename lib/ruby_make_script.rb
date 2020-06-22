@@ -157,7 +157,6 @@ def make
 
     throw "at least a target" if $targetlist.length < 1
     
-    p $file_time_dict
     if File.exists?('./.make_script.yaml')
         p $file_time_dict
         $file_time_dict = YAML.load(File.read('./.make_script.yaml'))
