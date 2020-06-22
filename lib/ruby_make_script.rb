@@ -47,7 +47,7 @@ end
 class FileTarget
     attr_accessor completed
     def depend_modified?
-        @depend.map(|f| file_modified?(file)).reduce(false, :or)
+        return @depend.map(|f| file_modified?(file)).reduce(false, :or)
     end
     def run
         if ! @completed
