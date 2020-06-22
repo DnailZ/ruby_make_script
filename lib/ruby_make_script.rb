@@ -1,6 +1,8 @@
 
 require "pastel"
 
+pastel = Pastel.new
+
 $targetlist = []
 $file_target_dict = Hash[]
 $file_time_dict = Hash[]
