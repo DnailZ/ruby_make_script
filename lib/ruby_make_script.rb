@@ -131,6 +131,7 @@ end
 class Array
     def from(*dependlist, &block)
         tar = FileTarget.new(self).depend(dependlist)
+        puts block
         tar.update_proc = Proc.new(&block)
         tar.add()
     end
