@@ -24,8 +24,8 @@ class RubyMakeScriptTest < Minitest::Test
         even = [false, true].cycle
         odd = [true, false].cycle
 
-        files = check.select{odd.next}
-        modified? = check.select{even.next}
+        files = check.select{ odd.next }
+        modified? = check.select{ even.next }
 
         mtime = files.map{ |f| File.mtime(f) }
 
@@ -38,6 +38,7 @@ class RubyMakeScriptTest < Minitest::Test
                 raise "#{f} modified" unless mtime == File.mtime(f)
             end
         }
+        end
     end
 
     def test_make
