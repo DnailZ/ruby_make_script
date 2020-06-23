@@ -112,7 +112,7 @@ class Symbol
     # end
     # ```
     def then
-        from()
+        PhonyTarget.new(String(self)).from() { yield }
     end
 end
 
