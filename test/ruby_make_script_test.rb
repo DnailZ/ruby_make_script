@@ -46,6 +46,9 @@ class RubyMakeScriptTest < Minitest::Test
             rm? "-r prog"
             make_file
             check_file("prog", "build/a.o")
+            mtime = File.mtime('prog')
+            mtime = File.mtime('.build')
+            make_file
         end
     end
 end
