@@ -7,15 +7,15 @@ end
 
 # these were like cd function
 def rm(*str)
-    sh"rm #{str.join(' ')}"
+    r"rm #{str.join(' ')}"
 end
 
 # these were like cd function
 def mkdir(*str)
-    sh"mkdir #{str.join(' ')}"
+    r"mkdir #{str.join(' ')}"
 end
 
-def sh(*str)
+def r(*str)
     puts Pastel.new.green("running> ") + self
     if !system(self) 
         puts Pastel.new.red.bold("error> ") + "command error: " + self
