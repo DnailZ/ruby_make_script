@@ -30,19 +30,16 @@ class RubyMakeScriptTest < Minitest::Test
         mtime = files.map{ |f|
             raise "#{f} do not exist" unless File.exist?(f)
             File.mtime(f)
-            puts "[info] saved time #{File.mtime(f)} for #{f}"
         }
 
         yield
 
         files.zip(mtime, modified).each { |f, mtime, m|
             if m == 'modified'
-                raise "#{f} unmodified" unless mtime != File.mtime(f)
+                raise "#{f} unmodified #{mtime} == #{File.mtime(f)} " unless mtime != File.mtime(f)
             elsif m == 'unmodified'
-                raise "#{f} modified" unless mtime == File.mtime(f)
+                raise "#{f} modified #{mtime} != #{File.mtime(f)}" unless mtime == File.mtime(f)
             end
-            puts "[info] time compare for #{f}"
-            puts "[info] time compare #{File.mtime(f)} and #{mtime}"
         }
     end
 
@@ -77,7 +74,7 @@ class RubyMakeScriptTest < Minitest::Test
             check_modified(
                 'prog', 'unmodified',
                 '.build/a.o', 'unmodified'
-            ) { make_file}
+            ) { make_file }
             
             r "echo ' ' >> a.c"
             check_modified(
