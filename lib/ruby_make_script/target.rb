@@ -1,4 +1,6 @@
+class Target
 
+end
 
 class FileTarget
 
