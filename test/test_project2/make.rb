@@ -1,5 +1,9 @@
 require "ruby_make_script"
 
+def CC(*str)
+    r "gcc", "-I.", *str
+end
+
 puts "make start"
 
 mkdir? ".build"
