@@ -41,6 +41,7 @@ def resolve(file, force_exec=false)
         t = $file_target_dict[file]
         # when t == nil, its a file not used for target
         if t != nil 
+            puts "#{file} changing"
             t.depend_each { |f|
                 resolve(f)
             }
