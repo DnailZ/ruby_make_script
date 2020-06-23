@@ -38,8 +38,9 @@ def resolve(file)
     puts "resolving #{file}"
     if file_modified?(file)
         t = $file_target_dict[file]
-        if t != nil # t == nil 时 file 是其他文件
-            p :t , t
+        
+        # when t == nil, its a file not used for target
+        if t != nil 
             t.depend_each { |f|
                 resolve(f)
             }
