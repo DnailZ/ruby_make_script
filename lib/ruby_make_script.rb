@@ -70,20 +70,37 @@ end
 class Symbol
     # Usage:
     # 
-    # :app .from 
-    #
+    # ```
+    # :app .from "file1" do
+    #   <your command here>
+    # end
+    # ```
     def from(*dependlist)
         PhonyTarget.new(String(self)).from(*dependlist) { yield }
     end
 end
 
 class String
+    # Usage:
+    # 
+    # ```
+    # "file1" .from "file2" do
+    #   <your command here>
+    # end
+    # ```
     def from(*dependlist)
         [self].from(*dependlist) { yield }
     end
 end
 
 class Array
+    # Usage:
+    # 
+    # ```
+    # ["file1", "file2"] .from "file3", "file4" do
+    #   <your command here>
+    # end
+    # ```
     def from(*dependlist)
         tar = FileTarget.new(self)
         tar.from(*dependlist) { yield }
@@ -91,7 +108,13 @@ class Array
 end
 
 
-
+# Usage:
+# 
+# ```
+# make do
+#   <define target here>
+# end
+# ```
 def make
     $targetlist = []
     
