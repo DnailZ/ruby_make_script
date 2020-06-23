@@ -38,7 +38,7 @@ def resolve(file)
     puts "resolving #{file}"
     if file_modified?(file)
         t = $file_target_dict[file]
-        
+
         # when t == nil, its a file not used for target
         if t != nil 
             t.depend_each { |f|
@@ -60,6 +60,7 @@ def file_modified?(file)
         # 假目标被修改：依赖被修改或之前不存在
         return $file_time_dict[file] == nil || $file_target_dict[file].depend_modified?
     elsif $file_target_dict[file] == nil
+        p file
         # 对无目标的文件，判断其存在，存在则直接使用即可
         if !File.exist?(file)
             raise "file not found #{file}"
