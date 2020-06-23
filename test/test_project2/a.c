@@ -5,6 +5,6 @@ int square(int i) {
 }
 
 int main() {
-    printf("%d\n", square(234))
+    printf("%d\n", square(234));
     return 0;
 }
