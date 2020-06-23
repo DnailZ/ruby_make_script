@@ -22,6 +22,7 @@ class RubyMakeScriptTest < Minitest::Test
     end
 
     def make_file2
+        mkdir? ".build"
         sources = Dir.glob("**/*.c")
         objects = sources.map{ |f| ".build/" + f.gsub('.c', '.o')}
         headers = Dir.glob("**/*.c")
