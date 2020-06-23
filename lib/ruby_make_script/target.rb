@@ -1,5 +1,8 @@
 class Target
 
+    def depend_each
+        
+    end
 end
 
 class FileTarget
