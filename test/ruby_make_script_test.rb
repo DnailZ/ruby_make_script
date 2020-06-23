@@ -79,18 +79,14 @@ class RubyMakeScriptTest < Minitest::Test
                 'prog', 'modified',
                 '.build/a.o', 'modified',
                 '.build/b.o', 'unmodified'
-            ) do
-                make_file
-            end
+            ) { make_file }
 
             rm 'prog'
             check_modified(
                 'prog', 'modified',
                 '.build/a.o', 'unmodified',
                 '.build/b.o', 'unmodified'
-            ) do
-                make_file
-            end
+            ) { make_file }
         end
     end
 end
