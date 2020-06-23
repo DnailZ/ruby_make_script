@@ -89,6 +89,7 @@ class RubyMakeScriptTest < Minitest::Test
             ) {
                 make_file
                 r "echo ' ' >> a.c"
+                sleep(0.1)
             }
             check_file('prog')
         end
