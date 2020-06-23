@@ -153,7 +153,7 @@ def make
     if File.exist?('./.make_script.yaml')
         $file_time_dict = YAML.load(File.read('./.make_script.yaml'))
     end
-
+    puts Pastel.new.green.bold("ruby_make_script> ") + "start"
     begin
         if ARGV.length <= 1
             $targetlist[0].resolve_all
@@ -166,7 +166,10 @@ def make
         if e.message != "make command failed"
             puts e.backtrace
         end
+    else
+        puts Pastel.new.green.bold("ruby_make_script> ") + "completed"
     end
 
     File.open('./.make_script.yaml', 'w') { |f| f.write(YAML.dump($cur_file_time_dict)) }
+
 end
