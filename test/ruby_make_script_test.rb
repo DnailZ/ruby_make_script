@@ -10,6 +10,7 @@ class RubyMakeScriptTest < Minitest::Test
         fork {
             require "./make.rb"
         }
+        sleep(1)
         Process.wait
     end
     
@@ -63,6 +64,7 @@ class RubyMakeScriptTest < Minitest::Test
 
     def test_make2
         cd "./test/test_project2" do
+            
             rm? "-r .build"
             rm? "-r .make_script.yaml"
             rm? "-r prog"
@@ -72,8 +74,8 @@ class RubyMakeScriptTest < Minitest::Test
             check_modified(
                 'prog', 'unmodified',
                 '.build/a.o', 'unmodified'
-            ) { make_file }
-
+            ) { make_file}
+            
             r "echo ' ' >> a.c"
             check_modified(
                 'prog', 'modified',
@@ -89,7 +91,6 @@ class RubyMakeScriptTest < Minitest::Test
             ) {
                 make_file
                 r "echo ' ' >> a.c"
-                sleep(0.1)
             }
             check_file('prog')
         end
