@@ -16,9 +16,10 @@ def mkdir(*str)
 end
 
 def r(*str)
-    puts Pastel.new.green("running> ") + self
-    if !system(self) 
-        puts Pastel.new.red.bold("error> ") + "command error: " + self
+    str =  str.join(" ")
+    puts Pastel.new.green("running> ") + str
+    if !system(str) 
+        puts Pastel.new.red.bold("error> ") + "command error: " + str
         throw "make command failed"
     end
 end
