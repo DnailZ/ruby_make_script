@@ -41,7 +41,8 @@ class RubyMakeScriptTest < Minitest::Test
             elsif m == 'unmodified'
                 raise "#{f} modified" unless mtime == File.mtime(f)
             end
-            puts "[info] time compare #{File.mtime(f)} and mtime for #{f}"
+            puts "[info] time compare for #{f}"
+            puts "[info] time compare #{File.mtime(f)} and mtime"
         }
     end
 
