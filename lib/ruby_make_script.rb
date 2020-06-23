@@ -58,6 +58,7 @@ def file_modified?(file)
         throw "file type error #{$file_target_dict[file].class}"
     end
 end
+
 def file_modified!(file)
     if $file_target_dict[file].class == FileTarget
         $cur_file_time_dict[file] = File.mtime(file)
