@@ -22,14 +22,15 @@ class RubyMakeScriptTest < Minitest::Test
     end
 
     def make_file2
-        srcs = ["a.c", "b.c"]
-        srcs = ["a.c", "b.c"]
+        sources = Dir.glob("**/*.c")
+        headers = Dir.glob("**/*.c")
 
         make do
             :app .from "prog" do
                 r $d[0]
             end
-            "prog" .from do
+            "prog" .from *sources, *headers do
+                
             end
         end
     end
