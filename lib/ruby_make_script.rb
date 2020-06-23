@@ -37,8 +37,8 @@ require 'ruby_make_script/target'
 def resolve(file, force_exec=false)
     puts "resolving #{file}"
     if file_modified?(file) || force_exec
+        puts "#{file} modified"
         t = $file_target_dict[file]
-
         # when t == nil, its a file not used for target
         if t != nil 
             t.depend_each { |f|
