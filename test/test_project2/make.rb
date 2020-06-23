@@ -1,5 +1,7 @@
 require "ruby_make_script"
 
+p "make start"
+
 mkdir? ".build"
 sources = Dir.glob("**/*.c")
 objects = sources.map{ |f| ".build/" + f.gsub('.c', '.o')}
@@ -18,3 +20,5 @@ make do
         end
     end
 end
+
+p "make complete"
