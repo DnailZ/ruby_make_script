@@ -1,6 +1,7 @@
 
-require "pastel"
+require 'pastel'
 require 'yaml'
+require 'ruby_make_script/target'
 
 $targetlist = []
 $file_target_dict = Hash[]
