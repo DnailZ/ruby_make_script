@@ -13,7 +13,7 @@ Gem::Specification.new do |spec|
   spec.description   = %q{A ruby make DSL for ruby like GNU make. (very simple)}
   spec.homepage      = "https://github.com/DnailZ/ruby_make_script"
   spec.license       = "MIT"
-
+ 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
   # to allow pushing to a single host or delete this section to allow pushing to any host.
   if spec.respond_to?(:metadata)
