@@ -1,12 +1,13 @@
 
 require 'pastel'
 require 'yaml'
-require 'ruby_make_script/target'
 
-$targetlist = []
-$file_target_dict = Hash[]
-$file_time_dict = Hash[]
-$cur_file_time_dict = Hash[]
+$targetlist = []             # all targets
+$file_target_dict = Hash[]   # file -> target
+$file_time_dict = Hash[]     # file -> mtime (last make)
+$cur_file_time_dict = Hash[] # file -> mtime
+
+require 'ruby_make_script/target'
 
 class String
     def ~@
@@ -81,12 +82,10 @@ class String
     end
 end
 
-
 class Array
     def from(*dependlist)
         tar = FileTarget.new(self)
-        tar.set_depend(*dependlist) { yield }
-        tar.add
+        tar.from(*dependlist) { yield }
     end
 end
 
