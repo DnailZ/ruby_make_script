@@ -162,6 +162,7 @@ def make
     begin
         if ARGV.length <= 1
             $targetlist[0].resolve_all
+        elsif ARGV[1]
         else
             resolve(ARGV[1], force_exec=true)
         end
