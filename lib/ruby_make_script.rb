@@ -180,6 +180,6 @@ end
 
 def gen_config(filename)
     File.open(filename.gsub("rb", ""), 'w') { |f| 
-        
+        f << 
     }
 end
