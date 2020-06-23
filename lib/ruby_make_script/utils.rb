@@ -24,4 +24,7 @@ def mkdir(str)
     ~ "mkdir #{str}"
 end
 
+def run(str)
+    ~str
+
 
