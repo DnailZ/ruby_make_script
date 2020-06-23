@@ -21,6 +21,7 @@ class RubyMakeScriptTest < Minitest::Test
     end
 
     def check_modified(*file)
+        files
         mtime = files.map{|f| File.mtime(f) }
         yield
         files.zip(mtime).each { |f, mtime|
