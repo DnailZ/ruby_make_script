@@ -162,7 +162,7 @@ def make
         $file_time_dict = YAML.load(File.read('./.make_script.yaml'))
         $cur_file_time_dict = $file_time_dict.clone()
     end
-    puts Pastel.new.green.bold("make> ") + "start"
+    puts Pastel.new.purple.bold("make> ") + "start"
     
     begin
         if ARGV.length == 0
