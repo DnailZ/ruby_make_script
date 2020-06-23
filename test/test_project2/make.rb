@@ -7,7 +7,7 @@ end
 mkdir? ".build"
 sources = Dir.glob("**/*.c")
 objects = sources.map{ |f| ".build/" + f.gsub('.c', '.o')}
-headers = Dir.glob("**/*.c")
+headers = Dir.glob("**/*.h")
 
 make do
     :app .from "prog" do
