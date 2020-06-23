@@ -28,7 +28,7 @@ def resolve(file)
         t = $file_target_dict[file]
         if t != nil # t == nil 时 file 是其他文件
             p :t , t
-            t.depend.each { |f|
+            t.depend_each { |f|
                 resolve(f)
             }
             
