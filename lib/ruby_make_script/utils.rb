@@ -3,7 +3,10 @@
 # since ~ "cd <path>" invalid, add a function here
 def cd(str)
     if block_given?
-        
+        orig = Dir.pwd
+        Dir.chdir(str)
+        yield
+        Dir.chdir(orig)
     else
         Dir.chdir(str)
     end
