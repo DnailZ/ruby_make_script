@@ -143,7 +143,13 @@ def make
     end
 
     begin
-        $targetlist[0].resolve_all
+        throw "asdf"
+        if ARGV.length <= 1
+            $targetlist[0].resolve_all
+        else
+            resolve(ARGV[1])
+        end
+
     rescue String => e
         puts Pastel.new.red.bold("ruby_make_script failed> ") + e
     end
