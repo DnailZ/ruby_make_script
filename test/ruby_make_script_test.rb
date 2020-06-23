@@ -26,8 +26,10 @@ class RubyMakeScriptTest < Minitest::Test
 
         files = check.select{ odd.next }
         modified = check.select{ even.next }
-
-        mtime = files.map{ |f| File.mtime(f) }
+        mtime = files.map{
+            raise "#{f} do not exist" unless File.exist?(f)
+            |f| File.mtime(f)
+        }
 
         yield
 
