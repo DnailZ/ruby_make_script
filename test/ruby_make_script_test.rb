@@ -87,7 +87,7 @@ class RubyMakeScriptTest < Minitest::Test
                 '.build/b.o', 'unmodified'
             ) {
                 make_file
-                r "echo ' ' >> a.o"
+                r "echo ' ' >> .build/a.o"
             }
             check_file('prog')
         end
