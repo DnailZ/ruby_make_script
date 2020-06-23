@@ -162,6 +162,7 @@ def make
     
     if File.exist?('./.make_script.yaml')
         $file_time_dict = YAML.load(File.read('./.make_script.yaml'))
+        $cur_file_time_dict = $file_time_dict.clone()
     end
     puts Pastel.new.green.bold("ruby_make_script> ") + "start"
     begin
