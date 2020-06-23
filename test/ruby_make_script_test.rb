@@ -6,40 +6,12 @@ class RubyMakeScriptTest < Minitest::Test
         r "ls"
     end
 
-    def make_file1
-        make do
-            :run .from "a.out" do
-                r "./a.out"
-            end
-            "a.out" .from "test.c" do
-                r "gcc test.c"
-            end
-        end
+    def make_file
+        require "./make.rb"
     end
 
     def CC(*str)
         r "gcc", "-I.", *str
-    end
-
-    def make_file2
-        mkdir? ".build"
-        sources = Dir.glob("**/*.c")
-        objects = sources.map{ |f| ".build/" + f.gsub('.c', '.o')}
-        headers = Dir.glob("**/*.c")
-
-        make do
-            :app .from "prog" do
-                runfile $d[0]
-            end
-            "prog" .from *objects do
-                CC "-o", $t[0], *$d
-            end
-            sources.zip(objects).each do |s, o|
-                o .from s, *headers do
-                    CC "-c", "-o", $t[0], $d[0]
-                end
-            end
-        end
     end
     
     def check_file(*files)
@@ -54,16 +26,16 @@ class RubyMakeScriptTest < Minitest::Test
             rm? ".make_script.yaml"
             rm? "a.out"
 
-            make_file1
+            make_file
             check_file("a.out", ".make_script.yaml")
 
             rm "-r ./a.out"
-            make_file1
+            make_file
             check_file("a.out", ".make_script.yaml")
 
             r "echo '   ' >> test.c"
             mtime = File.mtime('a.out')
-            make_file1
+            make_file
             raise "a.out not modified" unless mtime != File.mtime('a.out')
         end
     end
@@ -73,7 +45,7 @@ class RubyMakeScriptTest < Minitest::Test
             rm? "-r .build"
             rm? "-r .make_script.yaml"
             rm? "-r prog"
-            make_file2
+            make_file
             check_file("prog", "build/a.o")
         end
     end
