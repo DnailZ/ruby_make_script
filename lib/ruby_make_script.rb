@@ -162,10 +162,6 @@ def make
     begin
         if ARGV.length <= 1
             $targetlist[0].resolve_all
-        elsif ARGV[1] == "gen_config"
-            File.open('./.make_script.yaml', 'w') { |f|
-                f << ""
-            }
         else
             resolve(ARGV[1], force_exec=true)
         end
