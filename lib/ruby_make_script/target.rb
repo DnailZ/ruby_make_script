@@ -11,19 +11,19 @@ module Target
     end
 
     def resolve_all
-        throw nil
+        raise nil
     end
 
     def run
-        throw nil
+        raise nil
     end
 
     def from(*dependlist)
-        throw nil
+        raise nil
     end
 
     def add
-        throw nil
+        raise nil
     end
 end
 
