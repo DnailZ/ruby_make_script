@@ -42,10 +42,10 @@ def resolve(file)
             p :t , t
             t.depend_each { |f|
             resolve(f)
-        }
+        
         t.run()
+        end
     end
-end
 end
 
 # check if a file is modified or its dependency is modified
