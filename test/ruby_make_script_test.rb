@@ -31,13 +31,13 @@ class RubyMakeScriptTest < Minitest::Test
 
         yield
 
-        files.zip(mtime).zip(modified?).each do |f, mtime, m?|
+        files.zip(mtime).zip(modified?).each { |f, mtime, m?|
             if m? == 'modified'
                 raise "#{f} unmodified" unless mtime != File.mtime(f)
             elsif m? == 'unmodified'
                 raise "#{f} modified" unless mtime == File.mtime(f)
             end
-        end
+        }
     end
 
     def test_make
