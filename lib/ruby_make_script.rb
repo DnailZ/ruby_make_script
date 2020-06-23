@@ -50,6 +50,9 @@ def resolve(file, force_exec=false)
             file_modified!(file)
         end
     else 
+        if file == "app"
+            puts $file_time_dict["app"]
+        end
         puts "#{file} unmodified"
     end 
 end
