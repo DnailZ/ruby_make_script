@@ -7,7 +7,7 @@ class RubyMakeScriptTest < Minitest::Test
     end
 
     def make_file
-        fork{
+        fork {
             require "./make.rb"
         }
         Process.wait
