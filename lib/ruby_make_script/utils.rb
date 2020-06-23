@@ -43,7 +43,7 @@ def cd?(str)
             Dir.chdir(str)
         end
     rescue => exception
-        puts Pastel.new.red.bold("error> ") + "command error: cd " + str + " (suppressed)"
+        puts Pastel.new.yellow("warning> ") + "command error: cd " + str + " (suppressed)"
         return false
     end
     return true
@@ -65,7 +65,7 @@ def r?(*str)
     puts Pastel.new.green("running> ") + str
     flag = system(str) 
     if !flag
-        puts Pastel.new.red.bold("error> ") + "command error: " + str + " (suppressed)"
+        puts Pastel.new.yellow("warning> ") + "command error: " + str + " (suppressed)"
     end
     flag
 end
