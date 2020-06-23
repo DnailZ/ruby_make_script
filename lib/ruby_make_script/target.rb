@@ -1,23 +1,39 @@
 class Target
 
     def depend_each
-        
+        @depend.each {
+            yield
+        }
+    end
+
+    def depend_modified?
+        return @depend.map{ |f| file_modified?(f) }.reduce(false, :or)
+    end
+
+    def resolve_all
+        throw nil
+    end
+
+    def run
+        throw nil
+    end
+
+    def from(*dependlist)
+        throw nil
+    end
+
+    def add
+        throw nil
     end
 end
 
 class FileTarget
+    include Target
 
-    attr_accessor :target
-    attr_accessor :depend
-    attr_accessor :update_proc
-    attr_accessor :completed
     def resolve_all
         @target.each{ |f|
             resolve(f)
         }
-    end
-    def depend_modified?
-        return @depend.map{ |f| file_modified?(file) }.reduce(false, :or)
     end
     def run
         if ! @completed
@@ -33,7 +49,7 @@ class FileTarget
        @depend = []
        @completed = false
     end
-    def set_depend(*dependlist)
+    def from(*dependlist)
         @depend = dependlist
         @update_proc = Proc.new { yield }
     end
@@ -46,15 +62,9 @@ class FileTarget
 end
 
 class PhonyTarget
-    attr_accessor :depend
-    attr_accessor :target
-    attr_accessor :update_proc
-    attr_accessor :completed
+    include Target
     def resolve_all
         resolve(@target)
-    end
-    def depend_modified?
-        @depend.map{ |f| file_modified?(file) }.reduce(false, :or)
     end
 
     def run
