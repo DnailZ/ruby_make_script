@@ -26,5 +26,4 @@ end
 
 def run(*str)
     ~ (str.join(' '))
-
-
+end
