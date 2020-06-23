@@ -44,8 +44,12 @@ def resolve(file, force_exec=false)
                 resolve(f)
             }
             t.run()
-            if File.exist?
-            puts "#{file} modified #{$file_time_dict[file]} != #{File.mtime(file)}"
+            if File.exist?(file)
+                puts "#{file} modified #{$file_time_dict[file]} != #{File.mtime(file)}"
+            else
+                puts "#{file} modified not exist?"
+                throw ""
+            end
             file_modified!(file)
         end
     else 
