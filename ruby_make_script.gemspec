@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["dnailzb@outlook.com"]
 
   spec.summary       = %q{make script}
-  spec.description   = %q{write make script in ruby like GNU make}
+  spec.description   = %q{a make DSL for ruby like GNU make. (very simply)}
   spec.homepage      = "TODO: Put your gem's website or public repo URL here."
   spec.license       = "MIT"
 
