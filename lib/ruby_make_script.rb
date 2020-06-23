@@ -162,9 +162,9 @@ def make
     begin
         if ARGV.length <= 1
             $targetlist[0].resolve_all
-        elsif ARGV[1]
+        elsif ARGV[0] 
         else
-            resolve(ARGV[1], force_exec=true)
+            resolve(ARGV[0], force_exec=true)
         end
 
     rescue StandardError => e
