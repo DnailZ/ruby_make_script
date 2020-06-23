@@ -36,7 +36,7 @@ require 'ruby_make_script/target'
 # check a file (recursively) and run the commands of the target.
 def resolve(file, force_exec=false)
     puts "resolving #{file}"
-    if file_modified?(file) | force_exec
+    if file_modified?(file) || force_exec
         t = $file_target_dict[file]
 
         # when t == nil, its a file not used for target
