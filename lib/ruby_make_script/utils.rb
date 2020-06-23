@@ -15,7 +15,7 @@ def cd(str)
 end
 
 # these were like cd function
-def rm(str)
+def rm(*str)
     ~ "rm #{str}"
 end
 
