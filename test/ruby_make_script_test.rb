@@ -20,8 +20,8 @@ end
 
 class RubyMakeScriptTest < Minitest::Test
     def test_cmd
-        ~ "pwd"
-        ~ "ls"
+        r "pwd"
+        r "ls"
     end
 
     def test_make
