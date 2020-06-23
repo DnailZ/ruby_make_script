@@ -27,7 +27,7 @@ class RubyMakeScriptTest < Minitest::Test
         files = input.select{odd.next}
         modified? = input.select{even.next}
 
-        mtime = files.map{|f| File.mtime(f) }
+        mtime = files.map{ |f| File.mtime(f) }
 
         yield
 
