@@ -1,13 +1,13 @@
 module Target
 
     def depend_each
-        @depend.each {
+        depend.each {
             yield
         }
     end
 
     def depend_modified?
-        return @depend.map{ |f| file_modified?(f) }.reduce(false, :or)
+        return depend.map{ |f| file_modified?(f) }.reduce(false, :or)
     end
 
     def resolve_all
@@ -29,6 +29,7 @@ end
 
 class FileTarget
     include Target
+    attr_accessor :depend
 
     def resolve_all
         @target.each{ |f|
@@ -64,6 +65,7 @@ end
 
 class PhonyTarget
     include Target
+    attr_accessor :depend
     def resolve_all
         resolve(@target)
     end
