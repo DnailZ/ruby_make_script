@@ -14,7 +14,7 @@
 #
 #
 #
-system('gem list pastel')
+system('gem list | grep pastel')
 require 'pastel'
 require 'yaml'
 
