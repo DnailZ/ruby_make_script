@@ -26,7 +26,6 @@ def resolve(file)
             t.depend_each { |f|
                 resolve(f)
             }
-            
             t.run()
         end
     end
