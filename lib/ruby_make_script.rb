@@ -37,7 +37,7 @@ require 'ruby_make_script/target'
 def resolve(file, force_exec=false)
     puts "resolving #{file}"
     if file_modified?(file) || force_exec
-        puts "#{file} modified"
+        puts "#{file} modified #{$file_time_dict[file]} != #{File.mtime(file)}"
         t = $file_target_dict[file]
         # when t == nil, its a file not used for target
         if t != nil 
