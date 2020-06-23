@@ -14,7 +14,11 @@
 #
 #
 #
-system('gem list | grep pastel')
+
+if !system('gem list | grep pastel') 
+    puts "pastel not install automaticly, please 'gem install pastel'"
+end
+
 require 'pastel'
 require 'yaml'
 
