@@ -1,8 +1,8 @@
 module Target
 
     def depend_each
-        depend.each {
-            yield
+        depend.each { |f|
+            yield f
         }
     end
 
