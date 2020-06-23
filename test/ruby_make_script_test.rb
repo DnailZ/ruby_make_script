@@ -29,7 +29,7 @@ class RubyMakeScriptTest < Minitest::Test
 
         make do
             :app .from "prog" do
-                r $d[0]
+                runfile $d[0]
             end
             "prog" .from *objects do
                 CC "-o", $t[0], *$d
