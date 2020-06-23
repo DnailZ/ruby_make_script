@@ -70,11 +70,12 @@ class RubyMakeScriptTest < Minitest::Test
             rm? "-r prog"
             make_file
             check_file("prog", ".build/a.o")
-            
+
             check_modified(
                 'prog', 'unmodified',
                 '.build/a.o', 'unmodified'
             ) { make_file }
+            throw "asdf"
             
             r "echo ' ' >> a.c"
             check_modified(
