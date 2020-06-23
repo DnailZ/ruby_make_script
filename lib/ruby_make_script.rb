@@ -1,3 +1,19 @@
+#
+# Usage:
+# ```
+# require "ruby_make_script"
+# make do
+#     :run .from "a.out" do
+#         ~ "./a.out"
+#     end
+#     "a.out" .from "test.c" do
+#         ~ "gcc test.c"
+#     end
+# end
+# ````
+#
+#
+#
 
 require 'pastel'
 require 'yaml'
