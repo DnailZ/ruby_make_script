@@ -78,3 +78,10 @@ def runfile?(file, *args)
     path = File.expand_path(file)
     r? path, *args
 end
+
+def in_env(k, v)
+    v0 = ENV[k]
+    ENV[k] = v
+    yield
+    ENV[k] = v0
+end
