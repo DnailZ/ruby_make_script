@@ -10,6 +10,7 @@ class RubyMakeScriptTest < Minitest::Test
         fork{
             require "./make.rb"
         }
+        Process.wait
     end
 
     def CC(*str)
