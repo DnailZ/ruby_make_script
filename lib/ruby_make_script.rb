@@ -15,7 +15,7 @@
 #
 #
 
-if !system('gem list | grep pastel') 
+if !system('gem list | grep pastel > /dev/null') 
     puts "pastel not install automaticly, please 'gem install pastel'"
 end
 
@@ -39,7 +39,7 @@ require 'ruby_make_script/target'
 
 # check a file (recursively) and run the commands of the target.
 def resolve(file, force_exec=false)
-    if file_modified?(file) || force_exec
+    if force_exec || file_modified?(file)
         p "ASdf"
         t = $file_target_dict[file]
         # when t == nil, its a file not used for target
@@ -168,7 +168,7 @@ def make
         if ARGV.length != 0
             $targetlist[0].resolve_all
         else
-            resolve(ARGV[0], force_exec=true)
+            resolve(ARGV[0], true)
         end
 
     rescue StandardError => e
