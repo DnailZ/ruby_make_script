@@ -41,9 +41,9 @@ def resolve(file)
         if t != nil # t == nil 时 file 是其他文件
             p :t , t
             t.depend_each { |f|
-            resolve(f)
-        
-        t.run()
+                resolve(f)
+            }
+            t.run()
         end
     end
 end
