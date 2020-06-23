@@ -41,7 +41,6 @@ def resolve(file)
 
         # when t == nil, its a file not used for target
         if t != nil 
-            p t.depend
             t.depend_each { |f|
                 resolve(f)
             }
