@@ -16,6 +16,15 @@ class RubyMakeScriptTest < Minitest::Test
             end
         end
     end
+
+    def make_file2
+        def CC
+            CC
+        end
+        make do
+            :app .from "app" do
+
+    end
     
     def check_file(*files)
         files.each{ |f|
