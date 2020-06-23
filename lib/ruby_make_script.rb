@@ -162,7 +162,8 @@ def make
         $file_time_dict = YAML.load(File.read('./.make_script.yaml'))
         $cur_file_time_dict = $file_time_dict.clone()
     end
-    puts Pastel.new.green.bold("ruby_make_script> ") + "start"
+    puts Pastel.new.green.bold("make> ") + "start"
+    
     begin
         if ARGV.length == 0
             $targetlist[0].resolve_all
@@ -171,12 +172,12 @@ def make
         end
 
     rescue StandardError => e
-        puts Pastel.new.red.bold("ruby_make_script failed> ") + e.message
+        puts Pastel.new.red.bold("make failed> ") + e.message
         if e.message != "make command failed"
             puts e.backtrace
         end
     else
-        puts Pastel.new.green.bold("ruby_make_script> ") + "completed"
+        puts Pastel.new.green.bold("make> ") + "completed"
     end
 
     File.open('./.make_script.yaml', 'w') { |f| f.write(YAML.dump($cur_file_time_dict)) }
