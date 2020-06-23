@@ -91,7 +91,6 @@ class RubyMakeScriptTest < Minitest::Test
                 'a.c', 'unmodified',
             ) {
                 make_file
-                r "echo ' ' >> a.c"
             }
             check_file('prog')
         end
