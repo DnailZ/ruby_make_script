@@ -1,6 +1,6 @@
 require "ruby_make_script"
 
-p "make start"
+puts "make start"
 
 mkdir? ".build"
 sources = Dir.glob("**/*.c")
@@ -21,4 +21,4 @@ make do
     end
 end
 
-p "make complete"
+putss "make complete"
