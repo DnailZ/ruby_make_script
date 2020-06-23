@@ -70,9 +70,7 @@ class RubyMakeScriptTest < Minitest::Test
             check_modified(
                 'prog', 'unmodified'
                 '.build/a.o', 'unmodified'
-            ) do
-                make_file
-            end
+            ) { make_file }
 
             run "echo ' ' >> a.c"
             check_modified(
