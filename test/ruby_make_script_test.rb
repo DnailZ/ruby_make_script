@@ -20,6 +20,13 @@ class RubyMakeScriptTest < Minitest::Test
         nil
     end
 
+    def check_modified(*file)
+        mtime = files.map{|f| File.mtime(f) }
+        yield
+        files.zip(mtime).each { |f, mtime|
+            raise "#{f} modified"
+        }
+
     def test_make
         cd "./test/test_project1" do
             rm? ".make_script.yaml"
@@ -46,9 +53,20 @@ class RubyMakeScriptTest < Minitest::Test
             rm? "-r prog"
             make_file
             check_file("prog", "build/a.o")
-            mtime = File.mtime('prog')
-            mtime = File.mtime('.build')
+
+            prog_mtime = File.mtime('prog')
+            a_obj_mtime = File.mtime('.build/a.o')
             make_file
+            raise "prog modified" unless prog_mtime == File.mtime('prog')
+            raise ".build/a.o modified" unless a_obj_mtime == File.mtime('.build/a.o')
+
+            run "echo ' ' >> a.c"
+            prog_mtime = File.mtime('prog')
+            a_obj_mtime = File.mtime('.build/a.o')
+            b_obj_mtime = File.mtime('.build/b.o')
+            make_file
+            raise ".build/a.o not modified" unless a_obj_mtime == File.mtime('.build/a.o')
+            raise ".build/b.o modified" unless b_obj_mtime == File.mtime('.build/b.o')
         end
     end
 end
