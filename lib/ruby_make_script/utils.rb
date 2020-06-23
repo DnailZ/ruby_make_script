@@ -79,7 +79,10 @@ def runfile?(file, *args)
     r? path, *args
 end
 
-def in_env(k, v)
+def 
+
+def in_env(expr, enable=true)
+    k, v = expr.split('=')
     v0 = ENV[k]
     ENV[k] = v
     yield
