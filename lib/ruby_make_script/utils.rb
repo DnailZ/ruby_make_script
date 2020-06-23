@@ -21,6 +21,15 @@ end
 def mkdir(*str)
     r"mkdir #{str.join(' ')}"
 end
+# these were like cd function
+def mv(*str)
+    r"mv #{str.join(' ')}"
+end
+
+# these were like cd function
+def cp(*str)
+    r"cp #{str.join(' ')}"
+end
 
 def r(*str)
     str =  str.join(" ")
@@ -57,6 +66,16 @@ end
 # these were like cd function
 def mkdir?(*str)
     r?"mkdir #{str.join(' ')}"
+end
+
+# these were like cd function
+def mv?(*str)
+    r?"mv #{str.join(' ')}"
+end
+
+# these were like cd function
+def cp?(*str)
+    r?"cp #{str.join(' ')}"
 end
 
 # no error
