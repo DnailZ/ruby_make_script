@@ -35,7 +35,6 @@ require 'ruby_make_script/target'
 
 # check a file (recursively) and run the commands of the target.
 def resolve(file, force_exec=false)
-    puts "resolving #{file}"
     if file_modified?(file) || force_exec
         t = $file_target_dict[file]
         # when t == nil, its a file not used for target
@@ -44,18 +43,13 @@ def resolve(file, force_exec=false)
                 resolve(f)
             }
             t.run()
-            if File.exist?(file) 
-                puts "#{file} modified #{$file_time_dict[file]} != #{File.mtime(file)}"
-            else
-                puts "#{file} modified not exist?"
-            end
+            # if File.exist?(file) 
+            #     puts "#{file} modified #{$file_time_dict[file]} != #{File.mtime(file)}"
+            # else
+            #     puts "#{file} modified not exist?"
+            # end
             file_modified!(file)
         end
-    else 
-        if file == "app"
-            puts $file_time_dict["app"]
-        end
-        puts "#{file} unmodified"
     end 
 end
 
