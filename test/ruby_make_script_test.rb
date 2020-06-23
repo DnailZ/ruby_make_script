@@ -20,13 +20,25 @@ class RubyMakeScriptTest < Minitest::Test
         nil
     end
 
-    def check_modified(*file)
-        odd = 
+    def check_modified(*input)
+        even = [false, true].cycle
+        odd = [true, false].cycle
+
+        files = input.select{odd.next}
+        modified? = input.select{even.next}
+
         mtime = files.map{|f| File.mtime(f) }
+
         yield
-        files.zip(mtime).each { |f, mtime|
-            raise "#{f} modified"
-        }
+
+        files.zip(mtime).zip(modified?).each do |f, mtime, m?|
+            if m? == 'modified'
+                raise "#{f} unmodified" unless mtime != File.mtime(f)
+            elsif m? == 'unmodified'
+                raise "#{f} modified" unless mtime == File.mtime(f)
+            end
+        end
+    end
 
     def test_make
         cd "./test/test_project1" do
@@ -41,9 +53,9 @@ class RubyMakeScriptTest < Minitest::Test
             check_file("a.out", ".make_script.yaml")
 
             r "echo '   ' >> test.c"
-            mtime = File.mtime('a.out')
-            make_file
-            raise "a.out not modified" unless mtime != File.mtime('a.out')
+            check_modified('a.out', 'modified') do
+                make_file
+            end
         end
     end
 
@@ -55,19 +67,30 @@ class RubyMakeScriptTest < Minitest::Test
             make_file
             check_file("prog", "build/a.o")
 
-            prog_mtime = File.mtime('prog')
-            a_obj_mtime = File.mtime('.build/a.o')
-            make_file
-            raise "prog modified" unless prog_mtime == File.mtime('prog')
-            raise ".build/a.o modified" unless a_obj_mtime == File.mtime('.build/a.o')
+            check_modified(
+                'prog', 'unmodified'
+                '.build/a.o', 'unmodified'
+            ) do
+                make_file
+            end
 
             run "echo ' ' >> a.c"
-            prog_mtime = File.mtime('prog')
-            a_obj_mtime = File.mtime('.build/a.o')
-            b_obj_mtime = File.mtime('.build/b.o')
-            make_file
-            raise ".build/a.o not modified" unless a_obj_mtime == File.mtime('.build/a.o')
-            raise ".build/b.o modified" unless b_obj_mtime == File.mtime('.build/b.o')
+            check_modified(
+                'prog', 'modified',
+                '.build/a.o', 'modified',
+                '.build/b.o', 'unmodified'
+            ) do
+                make_file
+            end
+
+            rm 'prog'
+            check_modified(
+                'prog', 'modified',
+                '.build/a.o', 'unmodified',
+                '.build/b.o', 'unmodified'
+            ) do
+                make_file
+            end
         end
     end
 end
