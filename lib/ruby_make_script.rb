@@ -143,7 +143,6 @@ def make
     end
 
     begin
-        raise "asdf"
         if ARGV.length <= 1
             $targetlist[0].resolve_all
         else
