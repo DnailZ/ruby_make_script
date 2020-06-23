@@ -25,16 +25,16 @@ class RubyMakeScriptTest < Minitest::Test
         odd = [true, false].cycle
 
         files = check.select{ odd.next }
-        modified? = check.select{ even.next }
+        modified = check.select{ even.next }
 
         mtime = files.map{ |f| File.mtime(f) }
 
         yield
 
-        files.zip(mtime).zip(modified?).each { |f, mtime, m?|
-            if m? == 'modified'
+        files.zip(mtime).zip(modified).each { |f, mtime, m|
+            if m == 'modified'
                 raise "#{f} unmodified" unless mtime != File.mtime(f)
-            elsif m? == 'unmodified'
+            elsif m == 'unmodified'
                 raise "#{f} modified" unless mtime == File.mtime(f)
             end
         }
