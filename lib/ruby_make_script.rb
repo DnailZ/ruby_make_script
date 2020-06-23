@@ -61,13 +61,13 @@ def file_modified?(file)
     elsif $file_target_dict[file] == nil
         # 对无目标的文件，判断其存在，存在则直接使用即可
         if !File.exist?(file)
-            throw "file not found #{file}"
+            raise "file not found #{file}"
         else
             $cur_file_time_dict[file] = File.mtime(file)
             return $file_time_dict[file] == nil || $file_time_dict[file] != File.mtime(file)
         end 
     else
-        throw "file type error #{$file_target_dict[file].class}"
+        raise "file type error #{$file_target_dict[file].class}"
     end
 end
 
@@ -78,7 +78,7 @@ def file_modified!(file)
     elsif $file_target_dict[file].class == PhonyTarget
         $cur_file_time_dict[file] = true
     else
-        throw "file type error #{file.class}"
+        raise "file type error #{file.class}"
     end
 end
 
@@ -136,14 +136,14 @@ def make
     
     yield
 
-    throw "at least a target" if $targetlist.length < 1
+    raise "at least a target" if $targetlist.length < 1
     
     if File.exist?('./.make_script.yaml')
         $file_time_dict = YAML.load(File.read('./.make_script.yaml'))
     end
 
     begin
-        throw "asdf"
+        raise "asdf"
         if ARGV.length <= 1
             $targetlist[0].resolve_all
         else
