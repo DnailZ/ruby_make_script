@@ -33,8 +33,7 @@ class RubyMakeScriptTest < Minitest::Test
         make_file1
         check_file("a.out", ".make_script.yaml")
 
-        p run
-        run("echo '   ' >> test.c")
+        r "echo '   ' >> test.c"
         mtime = File.mtime('a.out')
         make_file1
         raise "a.out not modified" unless mtime != File.mtime('a.out')
