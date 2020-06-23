@@ -46,6 +46,7 @@ def resolve(file, force_exec=false)
             }
             t.run()
         end
+        file_modified!(file)
     else 
         puts "#{file} unmodified"
     end 
