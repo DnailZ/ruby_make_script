@@ -70,7 +70,11 @@ def r?(*str)
     flag
 end
 
-def runfile(file, *str)
+def runfile(file, *args)
     path = File.expand_path(file)
-    r path 
+    r path, *args
+end
+def runfile?(file, *args)
+    path = File.expand_path(file)
+    r? path, *args
 end
