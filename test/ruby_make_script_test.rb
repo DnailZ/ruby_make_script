@@ -15,7 +15,7 @@ class RubyMakeScriptTest < Minitest::Test
     
     def check_file(*files)
         files.each{ |f|
-            raise "no #{each} output" unless system('ls #{f}')
+            raise "no #{each} output" unless File.exist?(f) 
         }
         nil
     end
