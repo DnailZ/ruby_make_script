@@ -14,7 +14,7 @@
 #
 #
 #
-
+system('gem list pastel')
 require 'pastel'
 require 'yaml'
 
