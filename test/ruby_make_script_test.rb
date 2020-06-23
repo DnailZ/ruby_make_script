@@ -20,7 +20,7 @@ class RubyMakeScriptTest < Minitest::Test
         nil
     end
 
-    def check_modified (*check)
+    def check_modified(*check)
         even = [false, true].cycle
         odd = [true, false].cycle
 
