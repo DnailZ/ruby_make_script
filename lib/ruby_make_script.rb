@@ -164,7 +164,7 @@ def make
     end
     puts Pastel.new.green.bold("ruby_make_script> ") + "start"
     begin
-        if ARGV.length <= 1
+        if ARGV.length != 0
             $targetlist[0].resolve_all
         else
             resolve(ARGV[0], force_exec=true)
