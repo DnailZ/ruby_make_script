@@ -52,6 +52,7 @@ class FileTarget
     def from(*dependlist)
         @depend = dependlist
         @update_proc = Proc.new { yield }
+        add()
     end
     def add
         $targetlist += [self]
