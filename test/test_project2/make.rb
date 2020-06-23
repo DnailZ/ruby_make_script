@@ -4,8 +4,6 @@ def CC(*str)
     r "gcc", "-I.", *str
 end
 
-puts "make start"
-
 mkdir? ".build"
 sources = Dir.glob("**/*.c")
 objects = sources.map{ |f| ".build/" + f.gsub('.c', '.o')}
@@ -24,5 +22,3 @@ make do
         end
     end
 end
-
-putss "make complete"
