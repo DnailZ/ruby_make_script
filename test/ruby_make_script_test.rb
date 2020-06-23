@@ -30,7 +30,7 @@ class RubyMakeScriptTest < Minitest::Test
         mtime = files.map{ |f|
             raise "#{f} do not exist" unless File.exist?(f)
             File.mtime(f)
-            puts "[info] saved time #{File.mtime(f).inspect} for #{f}"
+            puts "[info] saved time #{File.mtime(f)} for #{f}"
         }
 
         yield
@@ -41,7 +41,7 @@ class RubyMakeScriptTest < Minitest::Test
             elsif m == 'unmodified'
                 raise "#{f} modified" unless mtime == File.mtime(f)
             end
-            puts "[info] time compare #{File.mtime(f).inspect} and mtime for #{f}"
+            puts "[info] time compare #{File.mtime(f)} and mtime for #{f}"
         }
     end
 
