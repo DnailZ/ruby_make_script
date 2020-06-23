@@ -34,9 +34,9 @@ require 'ruby_make_script/utils'
 require 'ruby_make_script/target'
 
 # check a file (recursively) and run the commands of the target.
-def resolve(file)
+def resolve(file, force_exec=false)
     puts "resolving #{file}"
-    if file_modified?(file)
+    if file_modified?(file) | force_exec
         t = $file_target_dict[file]
 
         # when t == nil, its a file not used for target
@@ -147,7 +147,7 @@ def make
         if ARGV.length <= 1
             $targetlist[0].resolve_all
         else
-            resolve(ARGV[1])
+            resolve(ARGV[1], force_exec=true)
         end
 
     rescue StandardError => e
