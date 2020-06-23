@@ -106,8 +106,4 @@ def in_env(expr, enable=true)
     ENV[k] = v0
 end
 
-def tag_clear?(name)
-    ret = ARGV[name]
-    ARGV.delete(name)
-    ret
-end
+def using 
