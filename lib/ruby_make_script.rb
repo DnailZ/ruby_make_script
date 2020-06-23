@@ -151,7 +151,7 @@ def make
         end
 
     rescue StandardError => e
-        puts Pastel.new.red.bold("ruby_make_script failed> ") + e.message
+        puts Pastel.new.red("ruby_make_script failed> ") + e.message
         puts e.backtrace
     end
 
