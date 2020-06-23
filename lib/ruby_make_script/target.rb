@@ -1,3 +1,6 @@
+$t = []
+$d = []
+
 module Target
 
     def depend_each
@@ -52,7 +55,11 @@ class FileTarget
     end
     def from(*dependlist)
         @depend = dependlist
-        @update_proc = Proc.new { yield }
+        @update_proc = Proc.new { 
+            $t = @target
+            $d = @depend
+            yield
+        }
         add()
     end
     def add
