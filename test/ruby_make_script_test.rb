@@ -17,10 +17,12 @@ class RubyMakeScriptTest < Minitest::Test
         end
     end
 
+    def CC(*str)
+        r "gcc", "-I."
+    end
+    
     def make_file2
-        def CC(*str)
-            r "gcc", "-I."
-        end
+        
         make do
             :app .from "app" do
 
