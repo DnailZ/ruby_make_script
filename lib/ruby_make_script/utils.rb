@@ -79,8 +79,6 @@ def runfile?(file, *args)
     r? path, *args
 end
 
-def 
-
 def in_env(expr, enable=true)
     k, v = expr.split('=')
     v0 = ENV[k]
