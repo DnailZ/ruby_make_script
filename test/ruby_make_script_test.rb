@@ -23,13 +23,14 @@ class RubyMakeScriptTest < Minitest::Test
 
     def make_file2
         sources = Dir.glob("**/*.c")
+        objects = sources.gsub('.c', '.o')
         headers = Dir.glob("**/*.c")
 
         make do
             :app .from "prog" do
                 r $d[0]
             end
-            "prog" .from *sources, *headers do
+            "prog" .from *objects do
                 
             end
         end
