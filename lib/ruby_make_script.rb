@@ -2,26 +2,19 @@
 require 'pastel'
 require 'yaml'
 
-$targetlist = []             # all targets
-$file_target_dict = Hash[]   # file -> target
-$file_time_dict = Hash[]     # file -> mtime (last make)
-$cur_file_time_dict = Hash[] # file -> mtime
+# all targets list
+$targetlist = []      
+
+# file -> target
+$file_target_dict = Hash[]   
+
+# file -> mtime (last make)
+$file_time_dict = Hash[]   
+
+# file -> mtime  
+$cur_file_time_dict = Hash[] 
 
 require 'ruby_make_script/target'
-
-class String
-    def ~@
-        puts Pastel.new.green("running> ") + self
-        if !system(self) 
-            puts Pastel.new.red.bold("error> ") + "command error: " + self
-            throw "make command failed"
-        end
-    end
-end
-
-def cd(str)
-    Dir.chdir(str)
-end
 
 def resolve(file)
     puts "resolving #{file}"
