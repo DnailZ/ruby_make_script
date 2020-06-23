@@ -34,7 +34,14 @@ end
 # since ~ "cd <path>" invalid, add a function here
 def cd?(str)
     begin
-        Dir.chdir(str)
+        if block_given?
+            orig = Dir.pwd
+            Dir.chdir(str)
+            yield
+            Dir.chdir(orig)
+        else
+            Dir.chdir(str)
+        end
     rescue => exception
         puts Pastel.new.red.bold("error> ") + "command error: cd " + str
         return false
