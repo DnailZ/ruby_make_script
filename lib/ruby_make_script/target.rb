@@ -7,7 +7,7 @@ module Target
     end
 
     def depend_modified?
-        return depend.map{ |f| file_modified?(f) }.reduce(false, :or)
+        return depend.map{ |f| file_modified?(f) }.reduce(false, :|)
     end
 
     def resolve_all
