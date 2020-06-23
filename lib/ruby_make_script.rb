@@ -95,6 +95,17 @@ class Symbol
     def from(*dependlist)
         PhonyTarget.new(String(self)).from(*dependlist) { yield }
     end
+
+    # Usage:
+    # 
+    # ```
+    # :app .then do
+    #   <your command here>
+    # end
+    # ```
+    def then
+        from()
+    end
 end
 
 class String
