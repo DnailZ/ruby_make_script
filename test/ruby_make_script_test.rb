@@ -50,8 +50,8 @@ class RubyMakeScriptTest < Minitest::Test
 
     def test_make
         cd "./test/test_project1"
-        rm ".make_script.yaml"
-        rm "a.out"
+        rm? ".make_script.yaml"
+        rm? "a.out"
 
         make_file1
         check_file("a.out", ".make_script.yaml")
@@ -67,6 +67,8 @@ class RubyMakeScriptTest < Minitest::Test
     end
 
     def test_make2
-        cd "./test/test_project1"
+        cd "./test/test_project2"
+        make_file2
+        check_file("prog", "build/a.o")
     end
 end
