@@ -12,10 +12,6 @@ class RubyMakeScriptTest < Minitest::Test
         }
         Process.wait
     end
-
-    def CC(*str)
-        r "gcc", "-I.", *str
-    end
     
     def check_file(*files)
         files.each{ |f|
