@@ -70,6 +70,9 @@ class RubyMakeScriptTest < Minitest::Test
 
     def test_make2
         cd "./test/test_project2" do
+            rm? "-r .build"
+            rm? "-r .make_script.yaml"
+            rm? "-r prog"
             make_file2
             check_file("prog", "build/a.o")
         end
