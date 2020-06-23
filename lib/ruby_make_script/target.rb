@@ -1,4 +1,4 @@
-class Target
+module Target
 
     def depend_each
         @depend.each {
