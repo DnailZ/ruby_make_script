@@ -1,31 +1,34 @@
 require "test_helper"
 
-def make_file1
-    make do
-        :run .from "a.out" do
-            r"./a.out"
-        end
-        "a.out" .from "test.c" do
-            r"gcc test.c"
-        end
-    end
-end
-
-def check_file(*files)
-    files.each{ |f|
-        raise "no #{each} output" unless system('ls #{f}')
-    }
-    nil
-end
-
 class RubyMakeScriptTest < Minitest::Test
     def test_cmd
         r "pwd"
         r "ls"
     end
 
+    def make_file1
+        make do
+            :run .from "a.out" do
+                r "./a.out"
+            end
+            "a.out" .from "test.c" do
+                r "gcc test.c"
+            end
+        end
+    end
+    
+    def check_file(*files)
+        files.each{ |f|
+            raise "no #{each} output" unless system('ls #{f}')
+        }
+        nil
+    end
+
     def test_make
-        cd "./test/test_project"
+        cd "./test/test_project1"
+        rm ".make_script.yaml"
+        rm "a.out"
+
         make_file1
         check_file("a.out", ".make_script.yaml")
 
