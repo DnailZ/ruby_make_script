@@ -46,7 +46,9 @@ def resolve(file, force_exec=false)
             }
             t.run()
         end
-    end
+    else 
+        puts "#{file} unmodified"
+    end 
 end
 
 # check if a file is modified or its dependency is modified
