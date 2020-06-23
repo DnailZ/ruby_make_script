@@ -2,7 +2,11 @@
 
 # since ~ "cd <path>" invalid, add a function here
 def cd(str)
-    Dir.chdir(str)
+    if block_given?
+        
+    else
+        Dir.chdir(str)
+    end
 end
 
 # these were like cd function
