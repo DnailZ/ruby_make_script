@@ -10,6 +10,7 @@ module Target
     end
 
     def depend_modified?
+        puts depend
         return depend.map{ |f| file_modified?(f) }.reduce(false, :|)
     end
 
