@@ -3,10 +3,10 @@ require "test_helper"
 def make_file1
     make do
         :run .from "a.out" do
-            ~"./a.out"
+            r"./a.out"
         end
         "a.out" .from "test.c" do
-            ~"gcc test.c"
+            r"gcc test.c"
         end
     end
 end
