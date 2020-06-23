@@ -33,7 +33,11 @@ class RubyMakeScriptTest < Minitest::Test
             "prog" .from *objects do
                 CC "-o", $t[0], *$d
             end
-            
+            sources.zip(objects).each do |s, o|
+                o .from s, *headers do
+                    CC "-c", "-o", $t[0], $d[0]
+                end
+            end
         end
     end
     
@@ -60,5 +64,9 @@ class RubyMakeScriptTest < Minitest::Test
         mtime = File.mtime('a.out')
         make_file1
         raise "a.out not modified" unless mtime != File.mtime('a.out')
+    end
+
+    def test_make2
+        cd "./test/test_project1"
     end
 end
