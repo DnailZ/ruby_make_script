@@ -7,7 +7,9 @@ class RubyMakeScriptTest < Minitest::Test
     end
 
     def make_file
-        require "./make.rb"
+        fork{
+            require "./make.rb"
+        }
     end
 
     def CC(*str)
