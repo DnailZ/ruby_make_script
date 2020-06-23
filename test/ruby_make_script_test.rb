@@ -35,7 +35,7 @@ class RubyMakeScriptTest < Minitest::Test
 
         yield
 
-        files.zip(mtime).zip(modified).each { |f, mtime, m|
+        files.zip(mtime, modified).each { |f, mtime, m|
             if m == 'modified'
                 raise "#{f} unmodified" unless mtime != File.mtime(f)
             elsif m == 'unmodified'
