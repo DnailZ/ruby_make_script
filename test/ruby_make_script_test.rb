@@ -40,6 +40,8 @@ class RubyMakeScriptTest < Minitest::Test
         }
         end
     end
+end
+end
 
     def test_make
         cd "./test/test_project1" do
