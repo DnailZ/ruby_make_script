@@ -152,6 +152,7 @@ def make
 
     rescue StandardError => e
         puts Pastel.new.red.bold("ruby_make_script failed> ") + e.message
+        puts e.backtrace.inspect 
     end
 
     File.open('./.make_script.yaml', 'w') { |f| f.write(YAML.dump($cur_file_time_dict)) }
