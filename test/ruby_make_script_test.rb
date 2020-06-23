@@ -38,10 +38,7 @@ class RubyMakeScriptTest < Minitest::Test
                 raise "#{f} modified" unless mtime == File.mtime(f)
             end
         }
-        end
     end
-end
-end
 
     def test_make
         cd "./test/test_project1" do
