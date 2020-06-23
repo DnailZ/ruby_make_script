@@ -49,26 +49,28 @@ class RubyMakeScriptTest < Minitest::Test
     end
 
     def test_make
-        cd "./test/test_project1"
-        rm? ".make_script.yaml"
-        rm? "a.out"
+        cd "./test/test_project1" do
+            rm? ".make_script.yaml"
+            rm? "a.out"
 
-        make_file1
-        check_file("a.out", ".make_script.yaml")
+            make_file1
+            check_file("a.out", ".make_script.yaml")
 
-        rm "-r ./a.out"
-        make_file1
-        check_file("a.out", ".make_script.yaml")
+            rm "-r ./a.out"
+            make_file1
+            check_file("a.out", ".make_script.yaml")
 
-        r "echo '   ' >> test.c"
-        mtime = File.mtime('a.out')
-        make_file1
-        raise "a.out not modified" unless mtime != File.mtime('a.out')
+            r "echo '   ' >> test.c"
+            mtime = File.mtime('a.out')
+            make_file1
+            raise "a.out not modified" unless mtime != File.mtime('a.out')
+        end
     end
 
     def test_make2
-        cd "./test/test_project2"
-        make_file2
-        check_file("prog", "build/a.o")
+        cd "./test/test_project2" do
+            make_file2
+            check_file("prog", "build/a.o")
+        end
     end
 end
