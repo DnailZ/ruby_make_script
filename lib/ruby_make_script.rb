@@ -14,6 +14,7 @@ $file_time_dict = Hash[]
 # file -> mtime  
 $cur_file_time_dict = Hash[] 
 
+require 'ruby_make_script/utils'
 require 'ruby_make_script/target'
 
 def resolve(file)
