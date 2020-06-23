@@ -16,15 +16,15 @@ end
 
 # these were like cd function
 def rm(*str)
-    ~ "rm #{str}"
+    ~ "rm #{str.join(' ')}"
 end
 
 # these were like cd function
-def mkdir(str)
-    ~ "mkdir #{str}"
+def mkdir(*str)
+    ~ "mkdir #{str.join(' ')}"
 end
 
-def run(str)
-    ~str
+def run(*str)
+    ~ (str.join(' '))
 
 
