@@ -20,7 +20,7 @@ class RubyMakeScriptTest < Minitest::Test
     def test_make
         cd "./test/test_project"
         make_file
-        
+        assert 
         rm "-r ./a.out"
         make_file
 
