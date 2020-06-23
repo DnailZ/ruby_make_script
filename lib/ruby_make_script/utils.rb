@@ -13,3 +13,15 @@ end
 def cd(str)
     Dir.chdir(str)
 end
+
+# these were like cd function
+def rm(str)
+    ~ "rm #{str}"
+end
+
+# these were like cd function
+def mkdir(str)
+    ~ "mkdir #{str}"
+end
+
+
