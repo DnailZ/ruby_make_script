@@ -20,12 +20,12 @@ class RubyMakeScriptTest < Minitest::Test
         nil
     end
 
-    def check_modified (*input)
+    def check_modified (*check)
         even = [false, true].cycle
         odd = [true, false].cycle
 
-        files = input.select{odd.next}
-        modified? = input.select{even.next}
+        files = check.select{odd.next}
+        modified? = check.select{even.next}
 
         mtime = files.map{ |f| File.mtime(f) }
 
