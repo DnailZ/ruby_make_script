@@ -9,14 +9,32 @@ Or install it yourself as:
     ```
     $ gem install ruby_make_script
     ```
-    
+
 ## Usage
 
-Write ruby_make_script like:
+Write ruby_make_script like this:
 
+```ruby
+require "ruby_make_script"
+
+make do
+    :run .from "a.out" do
+        r "./a.out"
+    end
+    "a.out" .from "test.c" do
+        r "gcc test.c"
+    end
+end
 ```
 
+then run:
+
 ```
+$ ruby make.rb
+$ ruby make.rb run
+```
+
+It have work very sim
 
 ## Development
 
