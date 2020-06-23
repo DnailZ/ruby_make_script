@@ -34,7 +34,13 @@ $ ruby make.rb
 $ ruby make.rb run
 ```
 
-It have work very sim
+It works very similar to GNU Make.
+
+Here is a little complex one:
+
+```
+
+```
 
 ## Development
 
