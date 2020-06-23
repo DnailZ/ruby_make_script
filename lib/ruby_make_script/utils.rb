@@ -24,6 +24,6 @@ def mkdir(*str)
     ~ "mkdir #{str.join(' ')}"
 end
 
-def run(*str)
+def r(*str)
     ~ (str.join(' '))
 end
