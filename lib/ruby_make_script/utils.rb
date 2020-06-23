@@ -65,7 +65,7 @@ def r?(*str)
     puts Pastel.new.green("running> ") + str
     flag = system(str) 
     if !flag
-        puts Pastel.new.red.bold("error> ") + "command error: " + str
+        puts Pastel.new.red.bold("error> ") + "command error: " + str + " (su)"
     end
     flag
 end
