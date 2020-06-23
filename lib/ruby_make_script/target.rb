@@ -92,7 +92,11 @@ class PhonyTarget
 
     def from(*dependlist)
         @depend = dependlist
-        @update_proc = Proc.new { yield }
+        @update_proc = Proc.new { 
+            $t = @target
+            $d = @depend
+            yield
+        }
         add()
     end
     def add
