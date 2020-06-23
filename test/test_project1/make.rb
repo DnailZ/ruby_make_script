@@ -1,3 +1,5 @@
+require "ruby_make_script"
+
 make do
     :run .from "a.out" do
         r "./a.out"
