@@ -18,14 +18,20 @@ class RubyMakeScriptTest < Minitest::Test
     end
 
     def CC(*str)
-        r "gcc", "-I."
+        r "gcc", "-I.", *str
     end
-    
-    def make_file2
-        
-        make do
-            :app .from "app" do
 
+    def make_file2
+        srcs = ["a.c", "b.c"]
+        srcs = ["a.c", "b.c"]
+
+        make do
+            :app .from "prog" do
+                r $d[0]
+            end
+            "prog" .from do
+            end
+        end
     end
     
     def check_file(*files)
