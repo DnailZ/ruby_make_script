@@ -10,7 +10,7 @@ class RubyMakeScriptTest < Minitest::Test
         fork {
             require "./make.rb"
         }
-        sleep(2)
+        # sleep(2)
         Process.wait
     end
     
