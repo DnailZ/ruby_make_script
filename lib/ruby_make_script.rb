@@ -17,6 +17,7 @@ $cur_file_time_dict = Hash[]
 require 'ruby_make_script/utils'
 require 'ruby_make_script/target'
 
+# check a file (recursively) and run the commands of the target.
 def resolve(file)
     puts "resolving #{file}"
     if file_modified?(file)
@@ -24,13 +25,14 @@ def resolve(file)
         if t != nil # t == nil 时 file 是其他文件
             p :t , t
             t.depend_each { |f|
-                resolve(f)
-            }
-            t.run()
-        end
+            resolve(f)
+        }
+        t.run()
     end
 end
+end
 
+# check if a file is modified or its dependency is modified
 def file_modified?(file)
     if $file_target_dict[file].class == FileTarget
         # 文件真正被修改：文件之前不存在，或文件现在已经不存在，或时间戳修改
@@ -53,6 +55,7 @@ def file_modified?(file)
     end
 end
 
+# mark a file is modified
 def file_modified!(file)
     if $file_target_dict[file].class == FileTarget
         $cur_file_time_dict[file] = File.mtime(file)
@@ -63,7 +66,12 @@ def file_modified!(file)
     end
 end
 
+
 class Symbol
+    # Usage:
+    # 
+    # :app .from 
+    #
     def from(*dependlist)
         PhonyTarget.new(String(self)).from(*dependlist) { yield }
     end
