@@ -69,3 +69,7 @@ def r?(*str)
     end
     flag
 end
+
+def runfile(*str)
+    
+end
