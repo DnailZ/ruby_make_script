@@ -137,3 +137,4 @@ def using(*operation)
     operation.each{ |o| o.enter}
     yield
     operation.each{ |o| o.exit}
+end
