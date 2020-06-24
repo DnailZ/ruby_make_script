@@ -1,15 +1,6 @@
-
-
 # since ~ "cd <path>" invalid, add a function here
 def cd(str)
-    if block_given?
-        orig = Dir.pwd
-        Dir.chdir(str)
-        yield
-        Dir.chdir(orig)
-    else
-        Dir.chdir(str)
-    end
+    Dir.chdir(str)
 end
 
 # these were like cd function
@@ -43,14 +34,7 @@ end
 # since ~ "cd <path>" invalid, add a function here
 def cd?(str)
     begin
-        if block_given?
-            orig = Dir.pwd
-            Dir.chdir(str)
-            yield
-            Dir.chdir(orig)
-        else
-            Dir.chdir(str)
-        end
+        Dir.chdir(str)
     rescue => exception
         puts Pastel.new.yellow("warning> ") + "command error: cd " + str + " (suppressed)"
         return false
@@ -100,6 +84,37 @@ def runfile?(file, *args)
 end
 
 class InDir
+    def initialize(name, err=true)
+        @path = path
+    end
+
+    def enter
+        @orig = Dir.pwd
+        if err
+            cd @path
+        else
+            cd? @path
+        end
+    end
+
+    def exit
+        if err
+            cd @orig
+        else
+            cd? @orig
+        end
+    end
+end
+
+def dir(path)
+    InDir.new(path)
+end
+
+def dir?(path)
+    InDir.new(path, false)
+end
+
+class InEnv
     def initialize(expr)
         @k, @v = expr.split('=')
     end
@@ -114,35 +129,8 @@ class InDir
     end
 end
 
-def dir(path)
-    InDir.new(path)
-end
-
-def dir?(path)
-    InDir.new(path, false)
-end
-
 def envir(expr)
     InEnv.new(expr)
-end
-
-class InEnv
-    def initialize(name, err=true)
-        @path = path
-        @err = err
-    end
-
-    def enter
-        @orig = Dir.pwd
-    end
-
-    def exit
-        if err
-            cd @orig
-        else
-            cd? @orig
-        end
-    end
 end
 
 def using(*operation)
