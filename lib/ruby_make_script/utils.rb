@@ -134,7 +134,6 @@ class InEnv
 
     def enter
         @orig = Dir.pwd
-        
     end
 
     def exit
