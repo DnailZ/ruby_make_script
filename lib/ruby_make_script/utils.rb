@@ -106,4 +106,30 @@ def in_env(expr, enable=true)
     ENV[k] = v0
 end
 
-def using 
+class InDir
+    def initialize(path, err=true)
+        @path = path
+        @err = err
+    end
+
+    def enter
+        @orig = Dir.pwd
+        if err
+            cd path
+        else
+            cd? path
+        end
+    end
+
+    def exit
+        if err
+            cd @orig
+        else
+            cd? @orig
+        end
+    end
+end
+
+def dir
+
+def in
