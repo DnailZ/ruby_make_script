@@ -43,7 +43,7 @@ class RubyMakeScriptTest < Minitest::Test
     end
 
     def test_make
-        cd "./test/test_project1" do
+        using dir("./test/test_project1") do
             rm? ".make_script.yaml"
             rm? "a.out"
 
@@ -62,7 +62,7 @@ class RubyMakeScriptTest < Minitest::Test
     end
 
     def test_make2
-        cd "./test/test_project2" do
+        using dir("./test/test_project2") do
             
             rm? "-r .build"
             rm? "-r .make_script.yaml"
