@@ -84,7 +84,7 @@ def runfile?(file, *args)
 end
 
 class InDir
-    def initialize(name, err=true)
+    def initialize(path, err=true)
         @path = path
     end
 
