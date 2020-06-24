@@ -93,63 +93,48 @@ def runfile(file, *args)
     path = File.expand_path(file)
     r path, *args
 end
+
 def runfile?(file, *args)
     path = File.expand_path(file)
     r? path, *args
 end
 
-def in_env(expr, enable=true)
-    k, v = expr.split('=')
-    v0 = ENV[k]
-    ENV[k] = v
-    yield
-    ENV[k] = v0
-end
-
 class InDir
-    def initialize(path, err=true)
-        @path = path
-        @err = err
+    def initialize(expr)
+        @k, @v = expr.split('=')
     end
 
     def enter
-        @orig = Dir.pwd
-        if err
-            cd path
-        else
-            cd? path
-        end
+        @v0 = ENV[k]
+        ENV[k] = @v
     end
 
     def exit
-        if err
-            cd @orig
-        else
-            cd? @orig
-        end
+        ENV[k] = @v0
     end
 end
 
 def dir(path)
     InDir.new(path)
 end
+
 def dir?(path)
     InDir.new(path, false)
 end
 
+def envir(expr)
+    InEnv.new(expr)
+end
+
 class InEnv
-    def initialize(path, err=true)
+    def initialize(name, err=true)
         @path = path
         @err = err
     end
 
     def enter
         @orig = Dir.pwd
-        if err
-            cd path
-        else
-            cd? path
-        end
+        
     end
 
     def exit
