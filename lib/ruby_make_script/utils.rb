@@ -86,11 +86,12 @@ end
 class InDir
     def initialize(path, err=true)
         @path = path
+        @err = err
     end
 
     def enter
         @orig = Dir.pwd
-        if err
+        if @err
             cd @path
         else
             cd? @path
@@ -98,7 +99,7 @@ class InDir
     end
 
     def exit
-        if err
+        if @err
             cd @orig
         else
             cd? @orig
