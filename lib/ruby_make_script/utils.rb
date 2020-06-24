@@ -130,6 +130,38 @@ class InDir
     end
 end
 
-def dir
+def dir(path)
+    InDir.new(path)
+end
+def dir?(path)
+    InDir.new(path, false)
+end
 
-def in
+class InEnv
+    def initialize(path, err=true)
+        @path = path
+        @err = err
+    end
+
+    def enter
+        @orig = Dir.pwd
+        if err
+            cd path
+        else
+            cd? path
+        end
+    end
+
+    def exit
+        if err
+            cd @orig
+        else
+            cd? @orig
+        end
+    end
+end
+
+def using(*operation)
+    operation.each{ |o| o.enter}
+    yield
+    operation.each{ |o| o.exit}
