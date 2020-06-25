@@ -193,7 +193,7 @@ def dump_md(filename)
         f << ""
         $targetlist.each { |t|
             if t.class == PhonyTarget
-                f << "### `#{thisfile} #{t.target}"
+                f << "### `#{thisfile} #{t.target} "
             end
         }
 
