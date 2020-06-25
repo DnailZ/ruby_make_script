@@ -30,4 +30,4 @@ class TargetDoc
     end
 end
 
-$targetdoc = TargetDoc.new
+$targetdoc = nil
