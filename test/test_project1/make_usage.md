@@ -9,6 +9,7 @@ $ apt instal ruby
 $ gem instal pastel ruby_make_script
 ```
 
+then you can run these command below.
 ### `./make.rb run <args...>`
 
 run the application
