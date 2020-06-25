@@ -63,7 +63,6 @@ class RubyMakeScriptTest < Minitest::Test
 
     def test_make2
         use dir("./test/test_project2") do
-            
             rm? "-r .build"
             rm? "-r .make_script.yaml"
             rm? "-r prog"
