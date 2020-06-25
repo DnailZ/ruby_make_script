@@ -182,3 +182,19 @@ def make
 
     File.open('./.make_script.yaml', 'w') { |f| f.write(YAML.dump($cur_file_time_dict)) }
 end
+
+def dump_md(filename)
+    p __FILE__
+    thisfile = "make.rb"
+    File.open(filename, 'w') do |f|
+        f << "# `#{thisfile}` Usage"
+        f << ""
+        yield f
+        f << ""
+        $targetlist.each { |t|
+            if t.class == PhonyTarget
+                f << "### `#{thisfile} #{t.target}"
+            end
+        }
+
+    end
