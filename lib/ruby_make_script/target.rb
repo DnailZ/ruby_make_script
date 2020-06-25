@@ -76,6 +76,7 @@ end
 
 class PhonyTarget
     include Target
+    attr_accessor :target
     attr_accessor :depend
     attr_accessor :doc
     def resolve_all
