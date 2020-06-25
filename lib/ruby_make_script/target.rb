@@ -2,7 +2,7 @@ $t = []
 $d = []
 
 module Target
-
+    
     def depend_each
         depend.each { |f|
             yield f
