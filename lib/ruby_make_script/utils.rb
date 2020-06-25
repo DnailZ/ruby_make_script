@@ -140,4 +140,30 @@ def using(*operation)
     operation.each{ |o| o.exit}
 end
 
-def GIT()
+def CC(*args)
+    r "gcc", *args.map{|s| String(s)}
+end
+
+def CARGO(*args)
+    r "cargo", *args.map{|s| String(s)}
+end
+
+def GO(*args)
+    r "go", *args.map{|s| String(s)}
+end
+
+def RB(*args)
+    r "ruby", *args.map{|s| String(s)}
+end
+
+def PACK(*args)
+    r "ruby", *args.map{|s| String(s)}
+end
+
+def GIT(*args)
+    r "git", *args.map{|s| String(s)}
+end
+
+def DOCKER(*args)
+    r "docker", *args.map{|s| String(s)}
+end
