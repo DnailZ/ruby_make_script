@@ -193,8 +193,16 @@ def dump_md(filename)
         f << ""
         $targetlist.each { |t|
             if t.class == PhonyTarget
-                f << "### `#{thisfile} #{t.target} "
+                args = t.doc.arglist.map{ |a| a[0] }.join(' ')
+                f << "### `#{thisfile} #{t.target} #{args}`"
+                f << ""
+                f << "#{t.doc.descr}"
+                f << ""
+                t.doc.arglist.each { |a|
+                    f << "* `#{a[0]}` : #{a[1]}"
+                    f << ""
+                }
             end
         }
-
     end
+end
