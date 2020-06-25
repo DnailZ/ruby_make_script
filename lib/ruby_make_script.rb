@@ -205,6 +205,7 @@ def dump_md(filename, thisfile="make.rb")
         f.puts "$ gem instal pastel ruby_make_script"
         f.puts "```"
         f.puts ""
+        f.puts "then you can run these command below."
         $targetlist.each { |t|
             if t.class == PhonyTarget
                 args = t.doc.arglist.map{ |a| a[0] }.join(' ')
