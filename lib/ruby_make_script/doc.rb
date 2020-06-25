@@ -3,6 +3,7 @@ class TargetDoc
     def initialize()
         @arglist = []
         @descr = ""
+        @name = ""
     end
 
     def add_arg(name, doc)
@@ -11,6 +12,14 @@ class TargetDoc
 
     def descr(str)
         @descr += str + "\n"
+    end
+
+    def empty?()
+        @arglist == [] || @descr == ""
+    end
+
+    def form_str()
+
     end
 end
 
