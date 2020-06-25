@@ -22,8 +22,9 @@ def cp(*str)
     r"cp #{str.join(' ')}"
 end
 
-def r(*str)
-    str =  str.join(" ")
+def r(cmd, *str)
+    cmd = String(cmd)
+    str =  cmd + " " + str.join(" ")
     puts Pastel.new.green("running> ") + str
     if !system(str) 
         puts Pastel.new.red.bold("error> ") + "command error: " + str
@@ -63,8 +64,9 @@ def cp?(*str)
 end
 
 # no error
-def r?(*str)
-    str =  str.join(" ")
+def r?(cmd, *str)
+    cmd = String(cmd)
+    str =  cmd + " " + str.join(" ")
     puts Pastel.new.green("running> ") + str
     flag = system(str) 
     if !flag
