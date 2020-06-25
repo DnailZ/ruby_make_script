@@ -7,3 +7,5 @@ make do
         r "echo", "Hello", "World"
     end
 end
+
+dump_md('make.md'){}
