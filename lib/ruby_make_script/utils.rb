@@ -8,7 +8,6 @@ def rm(*str)
     r"rm #{str.join(' ')}"
 end
 
-
 # these were like cd function
 def mkdir(*str)
     r"mkdir #{str.join(' ')}"
