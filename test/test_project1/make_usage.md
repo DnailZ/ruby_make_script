@@ -1,5 +1,6 @@
-# `make.rb` Usage
+# `make.rb` Documentation
 
+## Usage
 
 ### `make.rb run <args...>`
 
