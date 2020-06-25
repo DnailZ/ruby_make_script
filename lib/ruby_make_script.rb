@@ -190,14 +190,14 @@ end
 def dump_md(filename, thisfile="make.rb")
     puts Pastel.new.bright_cyan("make> ") + "dumping markdown file #{filename}"
     File.open(filename, 'w') do |f|
-        f.puts "# `#{thisfile}` Documentation"
-        f.puts ""
-        f.puts "## Usage"
+        f.puts "# #{thisfile} Documentation"
         f.puts ""
         if block_given?
             yield f
             f.puts ""
         end
+        f.puts "## Usage"
+        f.puts ""
         $targetlist.each { |t|
             if t.class == PhonyTarget
                 args = t.doc.arglist.map{ |a| a[0] }.join(' ')
@@ -207,8 +207,10 @@ def dump_md(filename, thisfile="make.rb")
                 f.puts ""
                 t.doc.arglist.each { |a|
                     f.puts "* `#{a[0]}` : #{a[1]}"
-                    f.puts ""
                 }
+                if t.doc.arglist != []
+                    f.puts ""
+                end
             end
         }
     end
