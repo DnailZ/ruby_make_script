@@ -42,6 +42,7 @@ class FileTarget
             resolve(f)
         }
     end
+
     def run
         if ! @completed
             @update_proc.call
@@ -55,6 +56,7 @@ class FileTarget
        @target = targetlist
        @depend = []
        @completed = false
+       $targetdoc = TargetDoc.new
     end
     def from(*dependlist)
         @depend = dependlist
