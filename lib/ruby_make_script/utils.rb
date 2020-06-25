@@ -156,10 +156,11 @@ def RB(*args)
     r "ruby", *args.map{|s| String(s)}
 end
 
-def PACK(*args)
+def PACK(cmd, *args)
     if `uname -a`['Ubuntu']
-        r "sudo", "apt", *args.map{|s| String(s)}
-    elsif `uname -a`['']
+        r "sudo", "apt", cmd, *args.map{|s| String(s)}
+    elsif `uname -a`['Darwin']
+        r "brew", cmd, *args.map{|s| String(s)}
     end
 end
 
