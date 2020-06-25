@@ -191,22 +191,22 @@ def dump_md(filename)
     p __FILE__
     thisfile = "make.rb"
     File.open(filename, 'w') do |f|
-        f << "# `#{thisfile}` Usage"
-        f << ""
+        f.puts "# `#{thisfile}` Usage"
+        f.puts ""
         if block_given?
             yield f
         end
-        f << ""
+        f.puts ""
         $targetlist.each { |t|
             if t.class == PhonyTarget
                 args = t.doc.arglist.map{ |a| a[0] }.join(' ')
-                f << "### `#{thisfile} #{t.target} #{args}`"
-                f << ""
-                f << "#{t.doc.descr}"
-                f << ""
+                f.puts "### `#{thisfile} #{t.target} #{args}`"
+                f.puts ""
+                f.puts "#{t.doc.descr}"
+                f.puts ""
                 t.doc.arglist.each { |a|
-                    f << "* `#{a[0]}` : #{a[1]}"
-                    f << ""
+                    f.puts "* `#{a[0]}` : #{a[1]}"
+                    f.puts ""
                 }
             end
         }
