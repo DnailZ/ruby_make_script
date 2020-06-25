@@ -1,8 +1,8 @@
 
 class TargetDoc
-    attr_accessor arglist
-    attr_accessor descr
-    attr_accessor name
+    attr_accessor :arglist
+    attr_accessor :descr
+    attr_accessor :name
 
     def initialize()
         @arglist = []
