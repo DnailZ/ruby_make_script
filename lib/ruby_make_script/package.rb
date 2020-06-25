@@ -17,7 +17,10 @@ def PACK(cmd, *args)
     cmd = String(cmd)
     $system_to_pack.each do |k,v|
         if `uname -a`[k]
-            
+            if $pack[v][cmd]
+                cmd = $pack[v][cmd]
+            end
+            r v, cmd, *args
             break
         end
     end
