@@ -179,7 +179,11 @@ def make
     else
         puts Pastel.new.bright_cyan("make> ") + "completed"
     end
-
+    if !File.exist?('./.make_script.yaml')
+        File.open('.gitignore', 'a') do |f|
+            f << ".make_script.yaml"
+        end
+    end
     File.open('./.make_script.yaml', 'w') { |f| f.write(YAML.dump($cur_file_time_dict)) }
 end
 
