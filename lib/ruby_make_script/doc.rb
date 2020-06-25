@@ -33,7 +33,7 @@ end
 $targetdoc = TargetDoc.new
 
 def descr!(str)
-    $targetdoc.descr(str)
+    $targetdoc.add_descr(str)
 end
 
 def arg!(name, doc)
