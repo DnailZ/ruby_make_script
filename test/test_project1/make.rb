@@ -11,6 +11,6 @@ make do
     end
 end
 
-dump_md('make.usage.md')
+dump_md('make_usage.md')
 
 
