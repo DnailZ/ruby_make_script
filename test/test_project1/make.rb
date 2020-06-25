@@ -8,3 +8,4 @@ make do
         r "gcc test.c"
     end
 end
+
