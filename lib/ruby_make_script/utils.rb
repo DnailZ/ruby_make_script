@@ -139,3 +139,5 @@ def using(*operation)
     yield
     operation.each{ |o| o.exit}
 end
+
+def GIT()
