@@ -17,7 +17,7 @@ class TargetDoc
         @arglist += [[name, doc]]
     end
 
-    def descr(str)
+    def add_descr(str)
         @descr += str + "\n"
     end
 
