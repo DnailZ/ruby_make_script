@@ -35,6 +35,7 @@ end
 class FileTarget
     include Target
     attr_accessor :depend
+    attr_accessor :doc
 
     def resolve_all
         @target.each{ |f|
