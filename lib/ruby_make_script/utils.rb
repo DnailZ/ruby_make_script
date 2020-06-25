@@ -163,3 +163,5 @@ end
 def DOCKER(*args)
     r "docker", *args.map{|s| String(s)}
 end
+
+require 'ruby_make_script/package'
