@@ -187,9 +187,8 @@ def make
     File.open('./.make_script.yaml', 'w') { |f| f.write(YAML.dump($cur_file_time_dict)) }
 end
 
-def dump_md(filename)
-    p __FILE__
-    thisfile = "make.rb"
+def dump_md(filename, thisfile="make.rb")
+    puts Pastel.new.bright_cyan("make> ") + "dumping markdown file #{filename}"
     File.open(filename, 'w') do |f|
         f.puts "# `#{thisfile}` Documentation"
         f.puts ""
