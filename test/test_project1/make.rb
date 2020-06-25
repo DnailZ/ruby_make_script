@@ -7,7 +7,7 @@ make do
         r "./a.out"
     end
     "a.out" .from "test.c" do
-        r:gcc "test.c"
+        r:gcc, "test.c"
     end
 end
 
