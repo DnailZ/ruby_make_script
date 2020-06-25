@@ -35,7 +35,6 @@ end
 class FileTarget
     include Target
     attr_accessor :depend
-    attr_accessor :doc
 
     def resolve_all
         @target.each{ |f|
@@ -56,8 +55,8 @@ class FileTarget
        @target = targetlist
        @depend = []
        @completed = false
-       $targetdoc = TargetDoc.new
     end
+
     def from(*dependlist)
         @depend = dependlist
         @update_proc = Proc.new { 
@@ -78,6 +77,7 @@ end
 class PhonyTarget
     include Target
     attr_accessor :depend
+    attr_accessor :doc
     def resolve_all
         resolve(@target)
     end
@@ -93,6 +93,9 @@ class PhonyTarget
         @target = str
         @depend = []
         @completed = false
+
+        @doc = $targetdoc
+        $targetdoc = TargetDoc.new
     end
 
     def from(*dependlist)
