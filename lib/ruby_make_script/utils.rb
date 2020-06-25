@@ -123,12 +123,12 @@ class InEnv
     end
 
     def enter
-        @v0 = ENV[k]
-        ENV[k] = @v
+        @v0 = ENV[@k]
+        ENV[@k] = @v
     end
 
     def exit
-        ENV[k] = @v0
+        ENV[@k] = @v0
     end
 end 
 
