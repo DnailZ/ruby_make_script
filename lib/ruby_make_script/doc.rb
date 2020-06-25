@@ -30,6 +30,13 @@ class TargetDoc
     end
 end
 
-$targetdoc = nil
+$targetdoc = TargetDoc.new
 
-def description:
+def descr!(str)
+    $targetdoc.descr(str)
+end
+
+def arg!(name, doc)
+    $targetdoc.add_arg(name, doc)
+end
+
