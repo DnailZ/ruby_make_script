@@ -31,3 +31,5 @@ class TargetDoc
 end
 
 $targetdoc = nil
+
+def description:
