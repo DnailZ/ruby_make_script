@@ -4,7 +4,10 @@ make do
     descr! "setup the environment"
     arg! "<args...>", "command to run"
     :setup.from do
-        r "echo", "Hello", "World"
+        use envir("RUST_LOG=trace"), dir('test') do
+            r "env"
+            r "pwd"
+        end
     end
 end
 
