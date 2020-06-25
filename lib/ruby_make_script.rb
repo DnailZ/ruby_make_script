@@ -198,12 +198,20 @@ def dump_md(filename, thisfile="make.rb")
         end
         f.puts "## Usage"
         f.puts ""
+        f.puts "Please install ruby and some package first:"
+        f.puts ""
+        f.puts "```sh"
+        f.puts "$ apt instal ruby"
+        f.puts "$ gem instal pastel ruby_make_script"
+        f.puts "```"
+        f.puts ""
         $targetlist.each { |t|
             if t.class == PhonyTarget
                 args = t.doc.arglist.map{ |a| a[0] }.join(' ')
                 f.puts "### `./#{thisfile} #{t.target} #{args}`"
                 f.puts ""
                 f.puts "#{t.doc.descr}"
+                f.puts ""
                 t.doc.arglist.each { |a|
                     f.puts "* `#{a[0]}` : #{a[1]}"
                 }
