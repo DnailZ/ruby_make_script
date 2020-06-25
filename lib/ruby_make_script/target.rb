@@ -1,6 +1,8 @@
 $t = []
 $d = []
 
+require "ruby_make_script/doc"
+
 module Target
     
     def depend_each
