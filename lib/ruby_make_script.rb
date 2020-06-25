@@ -201,9 +201,9 @@ def dump_md(filename, thisfile="make.rb")
         $targetlist.each { |t|
             if t.class == PhonyTarget
                 args = t.doc.arglist.map{ |a| a[0] }.join(' ')
-                f.puts "### Command `./#{thisfile} #{t.target} #{args}`"
+                f.puts "### `./#{thisfile} #{t.target} #{args}`"
                 f.puts ""
-                f.puts "* description : #{t.doc.descr}"
+                f.puts "#{t.doc.descr}"
                 t.doc.arglist.each { |a|
                     f.puts "* `#{a[0]}` : #{a[1]}"
                 }

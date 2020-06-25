@@ -1,10 +1,9 @@
-# `make.rb` Documentation
+# make.rb Documentation
 
 ## Usage
 
-### `make.rb run <args...>`
+### Command `./make.rb run <args...>`
 
-run the application
-
+* description : run the application
 * `<args...>` : command to run
 
