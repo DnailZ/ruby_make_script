@@ -157,8 +157,10 @@ def RB(*args)
 end
 
 def PACK(*args)
-    if `uname -a`['']
-    r "ruby", *args.map{|s| String(s)}
+    if `uname -a`['Ubuntu']
+        r "sudo", "apt", *args.map{|s| String(s)}
+    elsif `uname -a`['']
+    end
 end
 
 def GIT(*args)
