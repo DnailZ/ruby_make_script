@@ -15,7 +15,11 @@ $pack['brew'] = Hash[
 
 def PACK(cmd, *args)
     cmd = String(cmd)
-    if `uname -a`['Ubuntu']
-    $system_to_pack
+    $system_to_pack.each do |k,v|
+        if `uname -a`[k]
+            
+            break
+        end
+    end
 end
 
