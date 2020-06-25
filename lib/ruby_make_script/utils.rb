@@ -156,6 +156,8 @@ def RB(*args)
     r "ruby", *args.map{|s| String(s)}
 end
 
+PACK
+
 def PACK(cmd, *args)
     if `uname -a`['Ubuntu']
         r "sudo", "apt", cmd, *args.map{|s| String(s)}
