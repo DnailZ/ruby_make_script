@@ -168,6 +168,7 @@ def make
         if ARGV.length == 0
             $targetlist[0].resolve_all
         else
+            p ARGV[0]
             resolve(ARGV[0], true)
         end
 
