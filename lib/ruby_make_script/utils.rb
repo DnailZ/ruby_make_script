@@ -157,6 +157,7 @@ def RB(*args)
 end
 
 def PACK(*args)
+    if `uname -a`['']
     r "ruby", *args.map{|s| String(s)}
 end
 
