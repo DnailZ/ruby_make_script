@@ -136,7 +136,7 @@ def envir(expr)
     InEnv.new(expr)
 end
 
-def using(*operation)
+def use(*operation)
     operation.each{ |o| o.enter}
     yield
     operation.each{ |o| o.exit}
